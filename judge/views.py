@@ -21,7 +21,10 @@ class SubmitSolutionView(generics.CreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
-        submission = serializer.save(user=self.request.user)
+        if self.request.user.is_authenticated:
+         submission = serializer.save(user=self.request.user)
+        else:
+         submission = serializer.save(user=None)
 
         testcases = TestCase.objects.filter(problem=submission.problem)
         all_passed = True

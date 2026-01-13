@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Problem</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="left">
+        <h2 id="title"></h2>
+        <p id="description"></p>
+
+        <h4>Test Cases</h4>
+        <ul id="testcases"></ul>
+    </div>
+
+    <div class="right">
+        <h3>Submit Code</h3>
+
+        <label>Language:</label>
+        <select id="language">
+            <option value="PY">Python</option>
+            <option value="CPP">C++</option>
+            <option value="JAVA">Java</option>
+        </select>
+
+        <textarea id="code" placeholder="Write your code here..."></textarea>
+        <button onclick="submitCode()">Submit</button>
+
+        <h4 id="result"></h4>
+    </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+    loadProblemDetail();
+</script>
+
+</body>
+</html>
