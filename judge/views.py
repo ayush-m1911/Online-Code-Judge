@@ -62,7 +62,7 @@ class SubmitSolutionView(generics.CreateAPIView):
                 return
 
             # Compilation Error (C++)
-            if submission.language == "CPP" and error and "error:" in error.lower():
+            if submission.language in ["CPP","JAVA"] and error and "error:" in error.lower():
                 submission.verdict = "CE"
                 submission.error_message = error
                 submission.save()
@@ -76,7 +76,7 @@ class SubmitSolutionView(generics.CreateAPIView):
                 return
 
             # Wrong Answer
-            if output is None or output.strip() != tc.expected_output.strip():
+            if output.strip() != tc.expected_output.strip():
                 submission.verdict = "WA"
                 submission.save()
                 return
