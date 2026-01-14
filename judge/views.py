@@ -76,7 +76,7 @@ class SubmitSolutionView(generics.CreateAPIView):
                 return
 
             # Wrong Answer
-            if output.strip() != tc.expected_output.strip():
+            if output.strip() != tc.expected_output.strip(): # type: ignore
                 submission.verdict = "WA"
                 submission.save()
                 return

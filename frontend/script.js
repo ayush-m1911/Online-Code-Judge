@@ -44,19 +44,29 @@ function loadProblemDetail() {
     fetch(`${API_BASE}/problems/${id}/`)
         .then(res => res.json())
         .then(problem => {
+            console.log("API RESPONSE:", problem); 
             document.getElementById("title").innerText = problem.title;
             document.getElementById("description").innerText = problem.description;
 
             const tcList = document.getElementById("testcases");
             tcList.innerHTML = "";
 
-            problem.testcases.forEach(tc => {
-                const li = document.createElement("li");
-                li.innerHTML = `<b>Input:</b> ${tc.input_data} <br> <b>Output:</b> ${tc.expected_output}`;
-                tcList.appendChild(li);
-            });
+            // 🔑 This must be problem.testcases
+            if (problem.test_cases && problem.test_cases.length > 0) {
+                problem.test_cases.forEach(tc => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `
+                        <b>Input:</b> ${tc.input_data} <br>
+                        <b>Output:</b> ${tc.expected_output}
+                    `;
+                    tcList.appendChild(li);
+                });
+            } else {
+                tcList.innerHTML = "<li>No test cases available</li>";
+            }
         });
 }
+
 function submitCode() {
     const params = new URLSearchParams(window.location.search);
     const problemId = params.get("id");
@@ -84,19 +94,19 @@ function submitCode() {
         const result = document.getElementById("result");
 
         if (data.verdict === "AC") {
-            result.innerText = "✅ Accepted";
+            result.innerText = " Accepted";
             result.style.color = "green";
         } else if (data.verdict === "WA") {
-            result.innerText = "❌ Wrong Answer";
+            result.innerText = " Wrong Answer";
             result.style.color = "red";
         } else if (data.verdict === "TLE") {
-            result.innerText = "⏳ Time Limit Exceeded";
+            result.innerText = " Time Limit Exceeded";
             result.style.color = "orange";
         } else if (data.verdict === "CE") {
-            result.innerText = "⚠️ Compilation Error";
+            result.innerText = " Compilation Error";
             result.style.color = "red";
         } else if (data.verdict === "RE") {
-            result.innerText = "⚠️ Runtime Error";
+            result.innerText = " Runtime Error";
             result.style.color = "red";
         } else {
             result.innerText = "Error: " + JSON.stringify(data);
