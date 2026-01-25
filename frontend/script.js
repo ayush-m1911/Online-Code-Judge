@@ -1,23 +1,48 @@
 const API_BASE = "http://localhost:8000/api";
+let editor = null;
 
-function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
+document.addEventListener("DOMContentLoaded", () => {
+    const page = document.body.dataset.page;
+
+    if (page === "index") {
+        loadProblems();
     }
-    return cookieValue;
+
+    if (page === "problem") {
+        initEditor();
+        loadProblemDetail();
+    }
+});
+
+/* =====================
+   Initialize Monaco Editor
+===================== */
+function initEditor() {
+    const editorDiv = document.getElementById("editor");
+    if (!editorDiv) return;
+
+    require.config({ paths: { vs: 'https://unpkg.com/monaco-editor@0.44.0/min/vs' } });
+
+    require(['vs/editor/editor.main'], function () {
+        editor = monaco.editor.create(editorDiv, {
+            value: "// Write your code here\n",
+            language: "python",
+            theme: "vs-dark",
+            automaticLayout: true
+        });
+
+        editor.focus();
+
+        document.getElementById("language").addEventListener("change", (e) => {
+            const map = { PY: "python", CPP: "cpp", JAVA: "java" };
+            monaco.editor.setModelLanguage(editor.getModel(), map[e.target.value]);
+        });
+    });
 }
 
-// --------------------
-// Load All Problems
-// --------------------
+/* =====================
+   Load Problems
+===================== */
 function loadProblems() {
     fetch(`${API_BASE}/problems/`)
         .then(res => res.json())
@@ -26,38 +51,53 @@ function loadProblems() {
             list.innerHTML = "";
 
             data.forEach(problem => {
-                const div = document.createElement("div");
-                div.innerHTML = `
+                const card = document.createElement("div");
+                card.className = "problem-card";
+                card.innerHTML = `
                     <h3>${problem.title}</h3>
+                    <span class="difficulty ${problem.difficulty.toLowerCase()}">
+                        ${problem.difficulty}
+                    </span>
                     <p>${problem.description.substring(0, 80)}...</p>
                     <a href="problem.html?id=${problem.id}">Solve</a>
-                    <hr>
                 `;
-                list.appendChild(div);
+                list.appendChild(card);
             });
         });
 }
+
+/* =====================
+   Load Problem Detail
+===================== */
 function loadProblemDetail() {
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id");
+    if (!id) return;
 
     fetch(`${API_BASE}/problems/${id}/`)
         .then(res => res.json())
         .then(problem => {
-            console.log("API RESPONSE:", problem); 
+
+            console.log("API RESPONSE:", problem);
+
             document.getElementById("title").innerText = problem.title;
             document.getElementById("description").innerText = problem.description;
+
+            document.getElementById("difficultyBadge").innerHTML = `
+                <span class="difficulty ${problem.difficulty.toLowerCase()}">
+                    ${problem.difficulty}
+                </span>
+            `;
 
             const tcList = document.getElementById("testcases");
             tcList.innerHTML = "";
 
-            // 🔑 This must be problem.testcases
             if (problem.test_cases && problem.test_cases.length > 0) {
                 problem.test_cases.forEach(tc => {
                     const li = document.createElement("li");
                     li.innerHTML = `
-                        <b>Input:</b> ${tc.input_data} <br>
-                        <b>Output:</b> ${tc.expected_output}
+                        <b>Input:</b> <pre>${tc.input_data}</pre>
+                        <b>Output:</b> <pre>${tc.expected_output}</pre>
                     `;
                     tcList.appendChild(li);
                 });
@@ -67,49 +107,45 @@ function loadProblemDetail() {
         });
 }
 
+
+
+/* =====================
+   Submit Code
+===================== */
 function submitCode() {
     const params = new URLSearchParams(window.location.search);
     const problemId = params.get("id");
-
-    const code = document.getElementById("code").value;
-    const language = document.getElementById("language").value;
-
-    const csrftoken = getCookie('csrftoken');   // 👈 get token
 
     fetch(`${API_BASE}/submit/`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "X-CSRFToken": csrftoken      // 👈 SEND TOKEN
+            "X-CSRFToken": getCookie("csrftoken")
         },
-        credentials: "include",          // 👈 send session cookie
+        credentials: "include",
         body: JSON.stringify({
             problem: problemId,
-            code: code,
-            language: language
+            code: editor.getValue(),
+            language: document.getElementById("language").value
         })
     })
     .then(res => res.json())
     .then(data => {
         const result = document.getElementById("result");
+        result.innerText = data.verdict;
+    });
+}
 
-        if (data.verdict === "AC") {
-            result.innerText = " Accepted";
-            result.style.color = "green";
-        } else if (data.verdict === "WA") {
-            result.innerText = " Wrong Answer";
-            result.style.color = "red";
-        } else if (data.verdict === "TLE") {
-            result.innerText = " Time Limit Exceeded";
-            result.style.color = "orange";
-        } else if (data.verdict === "CE") {
-            result.innerText = " Compilation Error";
-            result.style.color = "red";
-        } else if (data.verdict === "RE") {
-            result.innerText = " Runtime Error";
-            result.style.color = "red";
-        } else {
-            result.innerText = "Error: " + JSON.stringify(data);
+/* =====================
+   CSRF helper
+===================== */
+function getCookie(name) {
+    let value = null;
+    document.cookie.split(';').forEach(c => {
+        c = c.trim();
+        if (c.startsWith(name + '=')) {
+            value = decodeURIComponent(c.substring(name.length + 1));
         }
     });
+    return value;
 }

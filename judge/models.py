@@ -2,11 +2,21 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 class Problem(models.Model):
+    DIFFICULTY_CHOICES = (
+        ('Easy', 'Easy'),
+        ('Medium', 'Medium'),
+        ('Hard', 'Hard'),
+    )
     title = models.CharField(max_length=200)
     description = models.TextField()
     constraints = models.TextField(blank=True, null=True)
+    difficulty = models.CharField(
+        max_length=10,
+        choices=DIFFICULTY_CHOICES,
+        default='Easy'
+    )
     created_at = models.DateTimeField(auto_now_add=True)
-
+    topic = models.CharField(max_length=50, blank=True)
     def __str__(self):
         return self.title
 
