@@ -52,6 +52,10 @@ class Submission(models.Model):
     execution_time = models.FloatField(null=True, blank=True)
     error_message = models.TextField(blank=True, null=True)
     submitted_at = models.DateTimeField(auto_now_add=True)
+    failed_input = models.TextField(null=True, blank=True)
+    failed_expected_output = models.TextField(null=True, blank=True)
+    failed_user_output = models.TextField(null=True, blank=True)
+
 
     def __str__(self):
         return f"Submission by {self.user.username} - {self.verdict}"

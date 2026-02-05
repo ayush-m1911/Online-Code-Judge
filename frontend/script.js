@@ -14,6 +14,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+function refreshToken() {
+
+    fetch("http://localhost:8000/api/token/refresh/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            refresh: localStorage.getItem("refresh")
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        localStorage.setItem("access", data.access);
+        console.log("Token refreshed");
+    });
+}
+
 /* =====================
    Initialize Monaco Editor
 ===================== */
@@ -37,6 +55,29 @@ function initEditor() {
             const map = { PY: "python", CPP: "cpp", JAVA: "java" };
             monaco.editor.setModelLanguage(editor.getModel(), map[e.target.value]);
         });
+    });
+}
+
+/* =====================
+   JWT LOGIN (STEP 4)
+===================== */
+function login(username, password) {
+    refreshToken();
+    fetch("http://localhost:8000/api/token/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            username: username,
+            password: password
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        localStorage.setItem("access", data.access);
+        localStorage.setItem("refresh", data.refresh);
+        alert("Login Successful");
     });
 }
 
@@ -107,10 +148,8 @@ function loadProblemDetail() {
         });
 }
 
-
-
 /* =====================
-   Submit Code
+   Submit Code (STEP 5 UPDATED)
 ===================== */
 function submitCode() {
     const params = new URLSearchParams(window.location.search);
@@ -120,9 +159,8 @@ function submitCode() {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "X-CSRFToken": getCookie("csrftoken")
+            "Authorization": `Bearer ${localStorage.getItem("access")}`  // ✅ JWT HEADER
         },
-        credentials: "include",
         body: JSON.stringify({
             problem: problemId,
             code: editor.getValue(),
@@ -131,13 +169,57 @@ function submitCode() {
     })
     .then(res => res.json())
     .then(data => {
+
         const result = document.getElementById("result");
-        result.innerText = data.verdict;
+
+        if (data.verdict === "AC") {
+            result.innerHTML = " Accepted";
+            result.style.color = "green";
+
+        } else if (data.verdict === "WA") {
+
+            if (data.failed_input) {
+
+                result.innerHTML = `
+                     Wrong Answer <br><br>
+
+                    <b>Input:</b>
+                    <pre>${data.failed_input}</pre>
+
+                    <b>Expected Output:</b>
+                    <pre>${data.failed_expected_output}</pre>
+
+                    <b>Your Output:</b>
+                    <pre>${data.failed_user_output}</pre>
+                `;
+
+            } else {
+
+                result.innerHTML = `
+                     Wrong Answer <br>
+                    Failed on hidden test case
+                `;
+            }
+
+            result.style.color = "red";
+
+        } else if (data.verdict === "TLE") {
+            result.innerHTML = " Time Limit Exceeded";
+
+        } else if (data.verdict === "CE") {
+            result.innerHTML = " Compilation Error";
+
+        } else if (data.verdict === "RE") {
+            result.innerHTML = " Runtime Error";
+
+        } else {
+            result.innerText = JSON.stringify(data);
+        }
     });
 }
 
 /* =====================
-   CSRF helper
+   CSRF helper (UNCHANGED – safe to keep)
 ===================== */
 function getCookie(name) {
     let value = null;
@@ -149,3 +231,5 @@ function getCookie(name) {
     });
     return value;
 }
+
+

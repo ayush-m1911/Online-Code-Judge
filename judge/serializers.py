@@ -16,5 +16,5 @@ class ProblemSerializer(serializers.ModelSerializer):
 class SubmissionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Submission
-        fields = ['id', 'user', 'problem', 'code', 'language', 'verdict', 'execution_time', 'error_message', 'submitted_at']
+        fields = '__all__'
         read_only_fields = ['user','verdict', 'execution_time', 'error_message', 'submitted_at']

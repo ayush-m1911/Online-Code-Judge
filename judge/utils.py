@@ -18,7 +18,7 @@ def run_code(code, input_data=""):
         with tempfile.TemporaryDirectory() as sandbox:
             file_path = os.path.join(sandbox, "main.py")
 
-            with open(file_path, "w") as f:
+            with open(file_path, "w", encoding="utf-8") as f:
                 f.write(code)
 
             start_time = time.time()
@@ -52,7 +52,7 @@ def run_cpp_code(code, input_data=""):
             src_path = os.path.join(sandbox, "main.cpp")
             exe_path = os.path.join(sandbox, "main")
 
-            with open(src_path, "w") as f:
+            with open(src_path, "w", encoding="utf-8") as f:
                 f.write(code)
 
             compile_result = subprocess.run(
@@ -96,7 +96,7 @@ def run_java_code(code, input_data=""):
         with tempfile.TemporaryDirectory() as sandbox:
             java_file = os.path.join(sandbox, "Main.java")
 
-            with open(java_file, "w") as f:
+            with open(java_file, "w", encoding="utf-8") as f:
                 f.write(code)
 
             compile_result = subprocess.run(
