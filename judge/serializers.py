@@ -14,6 +14,7 @@ class ProblemSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'description', 'constraints','difficulty','topic', 'created_at', 'test_cases']
 
 class SubmissionSerializer(serializers.ModelSerializer):
+    problem_title = serializers.CharField(source="problem.title", read_only=True)
     class Meta:
         model = Submission
         fields = '__all__'

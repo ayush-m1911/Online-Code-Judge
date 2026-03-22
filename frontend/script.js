@@ -12,6 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
         initEditor();
         loadProblemDetail();
     }
+    if (page === "submissions") {
+    loadSubmissions();
+}
 });
 
 function refreshToken() {
@@ -218,6 +221,8 @@ function submitCode() {
     });
 }
 
+
+
 /* =====================
    CSRF helper (UNCHANGED – safe to keep)
 ===================== */
@@ -233,3 +238,54 @@ function getCookie(name) {
 }
 
 
+function loadSubmissions() {
+
+    const token = localStorage.getItem("access");
+
+    console.log("TOKEN:", token);   // DEBUG
+
+    fetch(`${API_BASE}/submissions/`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    })
+    .then(res => {
+        if (res.status === 401) {
+            alert("Please login again!");
+            return [];
+        }
+        return res.json();
+    })
+    .then(data => {
+
+        console.log("DATA:", data);  // DEBUG
+
+        const table = document.getElementById("submission-list");
+        table.innerHTML = "";
+
+        if (!data || data.length === 0) {
+            table.innerHTML = "<tr><td colspan='4'>No submissions found</td></tr>";
+            return;
+        }
+
+        data.forEach(sub => {
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                <td>${sub.problem_title}</td>
+                <td style="color:${sub.verdict === 'AC' ? 'green' : 'red'}">
+                    ${sub.verdict}
+                </td>
+                <td>${sub.language}</td>
+                <td>${new Date(sub.submitted_at).toLocaleString()}</td>
+            `;
+
+            table.appendChild(row);
+        });
+    })
+    .catch(err => {
+        console.error("ERROR:", err);
+    });
+}

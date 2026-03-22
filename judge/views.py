@@ -4,7 +4,8 @@ from .models import Problem, Submission, TestCase
 from .serializers import ProblemSerializer, SubmissionSerializer
 from .utils import run_code, run_cpp_code, run_java_code
 from rest_framework.response import Response
-
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.generics import ListAPIView
 # Create your views here.
 
 class ProblemListView(generics.ListAPIView):
@@ -90,3 +91,10 @@ class SubmitSolutionView(generics.CreateAPIView):
         submission.save()
 
         return Response(SubmissionSerializer(submission).data)
+
+class SubmissionHistoryView(ListAPIView):
+    serializer_class = SubmissionSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Submission.objects.filter(user=self.request.user).order_by("-submitted_at")
