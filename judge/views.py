@@ -6,12 +6,21 @@ from .utils import run_code, run_cpp_code, run_java_code
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import ListAPIView
+from django.contrib.auth.models import User
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter
 # Create your views here.
 
 class ProblemListView(generics.ListAPIView):
     queryset = Problem.objects.all()
     serializer_class = ProblemSerializer
     permission_classes = [permissions.AllowAny]
+
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    filterset_fields = ['difficulty', 'topic']
+    search_fields = ['title', 'description']
 
 class ProblemDetailView(generics.RetrieveAPIView):
     queryset = Problem.objects.all()
@@ -98,3 +107,15 @@ class SubmissionHistoryView(ListAPIView):
 
     def get_queryset(self):
         return Submission.objects.filter(user=self.request.user).order_by("-submitted_at")
+    
+
+@api_view(["POST"])
+def signup(request):
+    username = request.data.get("username")
+    password = request.data.get("password")
+
+    if User.objects.filter(username=username).exists():
+        return Response({"error": "User already exists"}, status=400)
+
+    user = User.objects.create_user(username=username, password=password)
+    return Response({"message": "User created successfully"})

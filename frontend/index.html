@@ -12,8 +12,28 @@
     <a href="submissions.html" class="btn-primary">
         View Submissions
     </a>
+    <button onclick="logout()">Logout</button>
 </div>
+<div class="filters">
 
+    <input type="text" id="search" placeholder="Search problems...">
+
+    <select id="difficulty">
+        <option value="">All Difficulties</option>
+        <option value="Easy">Easy</option>
+        <option value="Medium">Medium</option>
+        <option value="Hard">Hard</option>
+    </select>
+     <select id="topic">
+        <option value="">All Topics</option>
+        <option value="Binary Search">Binary Search</option>
+        <option value="Dynamic Programming">DP</option>
+        <option value="Array">Array</option>
+        <option value="Graph">Graph</option>
+    </select>
+    <button onclick="loadProblems()">Apply</button>
+
+</div>
 <div id="problem-list"></div>
 
 <script src="script.js"></script>

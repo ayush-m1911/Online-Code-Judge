@@ -1,9 +1,20 @@
 const API_BASE = "http://localhost:8000/api";
 let editor = null;
 
+function checkAuth() {
+    const token = localStorage.getItem("access");
+
+    if (!token) {
+        window.location.href = "login.html";
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const page = document.body.dataset.page;
 
+    if (page === "index" || page === "problem" || page === "submissions") {
+    checkAuth();
+}
     if (page === "index") {
         loadProblems();
     }
@@ -88,23 +99,48 @@ function login(username, password) {
    Load Problems
 ===================== */
 function loadProblems() {
-    fetch(`${API_BASE}/problems/`)
+
+    const search = document.getElementById("search")?.value || "";
+    const difficulty = document.getElementById("difficulty")?.value || "";
+
+    let url = `${API_BASE}/problems/?`;
+
+    if (search) {
+        url += `search=${search}&`;
+    }
+
+    if (difficulty) {
+        url += `difficulty=${difficulty}&`;
+    }
+
+    fetch(url)
         .then(res => res.json())
         .then(data => {
+
             const list = document.getElementById("problem-list");
             list.innerHTML = "";
+
+            if (data.length === 0) {
+                list.innerHTML = "<p>No problems found</p>";
+                return;
+            }
 
             data.forEach(problem => {
                 const card = document.createElement("div");
                 card.className = "problem-card";
+
                 card.innerHTML = `
                     <h3>${problem.title}</h3>
+
                     <span class="difficulty ${problem.difficulty.toLowerCase()}">
                         ${problem.difficulty}
                     </span>
+
                     <p>${problem.description.substring(0, 80)}...</p>
+
                     <a href="problem.html?id=${problem.id}">Solve</a>
                 `;
+
                 list.appendChild(card);
             });
         });
@@ -289,3 +325,75 @@ function loadSubmissions() {
         console.error("ERROR:", err);
     });
 }
+
+function signupUser() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    fetch("http://localhost:8000/api/signup/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ username, password })
+    })
+    .then(res => res.json())
+    .then(data => {
+
+        const msg = document.getElementById("msg");
+
+        if (data.message) {
+            msg.style.color = "green";
+            msg.innerText = "Signup successful! Redirecting to login...";
+
+            setTimeout(() => {
+                window.location.href = "login.html";
+            }, 1500);
+
+        } else {
+            msg.style.color = "red";
+            msg.innerText = data.error || "Signup failed";
+        }
+    });
+}
+
+function loginUser() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    fetch("http://localhost:8000/api/token/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ username, password })
+    })
+    .then(res => res.json())
+    .then(data => {
+
+        const msg = document.getElementById("msg");
+
+        if (data.access) {
+            localStorage.setItem("access", data.access);
+            localStorage.setItem("refresh", data.refresh);
+
+            msg.style.color = "green";
+            msg.innerText = "Login successful!";
+
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 1000);
+
+        } else {
+            msg.style.color = "red";
+            msg.innerText = "Invalid username or password";
+        }
+    });
+}
+
+function logout() {
+    localStorage.removeItem("access");
+    localStorage.removeItem("refresh");
+    window.location.href = "login.html";
+}
+
