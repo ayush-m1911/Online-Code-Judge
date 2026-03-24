@@ -11,6 +11,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
+from rest_framework.views import APIView
 # Create your views here.
 
 class ProblemListView(generics.ListAPIView):
@@ -100,6 +101,36 @@ class SubmitSolutionView(generics.CreateAPIView):
         submission.save()
 
         return Response(SubmissionSerializer(submission).data)
+    
+
+class RunCodeView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        code = request.data.get("code")
+        language = request.data.get("language")
+        custom_input = request.data.get("custom_input", "")
+
+        # Python
+        if language == "PY":
+            output, error, exec_time = run_code(code, custom_input)
+
+        # C++
+        elif language == "CPP":
+            output, error, exec_time = run_cpp_code(code, custom_input)
+
+        # Java
+        elif language == "JAVA":
+            output, error, exec_time = run_java_code(code, custom_input)
+
+        else:
+            return Response({"error": "Unsupported language"})
+
+        return Response({
+            "output": output,
+            "stderr": error,
+            "execution_time": exec_time
+        })
 
 class SubmissionHistoryView(ListAPIView):
     serializer_class = SubmissionSerializer

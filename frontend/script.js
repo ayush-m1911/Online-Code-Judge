@@ -17,8 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
     checkAuth();
   }
 
-  if (page === "index")       loadProblems();
-  if (page === "problem")     { initEditor(); loadProblemDetail(); initResizableDivider(); }
+  if (page === "index") loadProblems();
+  if (page === "problem") { initEditor(); loadProblemDetail(); initResizableDivider(); }
   if (page === "submissions") loadSubmissions();
 });
 
@@ -67,13 +67,13 @@ function showToast(msg, type = "info") {
    MONACO EDITOR
    ========================================================= */
 const defaultCode = {
-  PY:   `# Write your solution here\n\ndef solve():\n    pass\n\nsolve()\n`,
-  CPP:  `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(NULL);\n    \n    // Write your solution here\n    \n    return 0;\n}\n`,
+  PY: `# Write your solution here\n\ndef solve():\n    pass\n\nsolve()\n`,
+  CPP: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(NULL);\n    \n    // Write your solution here\n    \n    return 0;\n}\n`,
   JAVA: `import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n    }\n}\n`
 };
 
 const langToFilename = { PY: "solution.py", CPP: "solution.cpp", JAVA: "Solution.java" };
-const langToMonaco   = { PY: "python", CPP: "cpp", JAVA: "java" };
+const langToMonaco = { PY: "python", CPP: "cpp", JAVA: "java" };
 
 function initEditor() {
   const editorDiv = document.getElementById("editor");
@@ -83,23 +83,23 @@ function initEditor() {
 
   require(["vs/editor/editor.main"], function () {
     editor = monaco.editor.create(editorDiv, {
-      value:            defaultCode["PY"],
-      language:         "python",
-      theme:            "vs-dark",
-      automaticLayout:  true,
-      fontSize:         14,
-      fontFamily:       "'Fira Code', 'JetBrains Mono', 'Consolas', monospace",
-      fontLigatures:    true,
-      minimap:          { enabled: false },
-      lineNumbers:      "on",
+      value: defaultCode["PY"],
+      language: "python",
+      theme: "vs-dark",
+      automaticLayout: true,
+      fontSize: 14,
+      fontFamily: "'Fira Code', 'JetBrains Mono', 'Consolas', monospace",
+      fontLigatures: true,
+      minimap: { enabled: false },
+      lineNumbers: "on",
       renderLineHighlight: "line",
       scrollBeyondLastLine: false,
-      padding:          { top: 12, bottom: 12 },
-      cursorBlinking:   "smooth",
+      padding: { top: 12, bottom: 12 },
+      cursorBlinking: "smooth",
       cursorSmoothCaretAnimation: "on",
-      smoothScrolling:  true,
-      tabSize:          4,
-      wordWrap:         "off"
+      smoothScrolling: true,
+      tabSize: 4,
+      wordWrap: "off"
     });
 
     editor.focus();
@@ -136,7 +136,7 @@ function copyCode() {
    ========================================================= */
 function initResizableDivider() {
   const divider = document.getElementById("ws-divider");
-  const left    = document.getElementById("ws-left");
+  const left = document.getElementById("ws-left");
   const workspace = document.getElementById("workspace");
   if (!divider || !left || !workspace) return;
 
@@ -152,8 +152,8 @@ function initResizableDivider() {
 
   document.addEventListener("mousemove", (e) => {
     if (!dragging) return;
-    const rect  = workspace.getBoundingClientRect();
-    const pct   = ((e.clientX - rect.left) / rect.width) * 100;
+    const rect = workspace.getBoundingClientRect();
+    const pct = ((e.clientX - rect.left) / rect.width) * 100;
     const clamped = Math.min(Math.max(pct, 25), 70);
     left.style.width = `${clamped}%`;
   });
@@ -185,9 +185,9 @@ function switchTab(btn, panelId) {
    ========================================================= */
 function toggleConsole() {
   consoleOpen = !consoleOpen;
-  const wrap    = document.getElementById("console-wrap");
+  const wrap = document.getElementById("console-wrap");
   const chevron = document.getElementById("console-chevron");
-  if (wrap)    wrap.classList.toggle("collapsed", !consoleOpen);
+  if (wrap) wrap.classList.toggle("collapsed", !consoleOpen);
   if (chevron) chevron.style.transform = consoleOpen ? "rotate(0deg)" : "rotate(-90deg)";
   setTimeout(() => { if (editor) editor.layout(); }, 300);
 }
@@ -201,16 +201,16 @@ function switchConsoleTab(btn, panelId) {
 }
 
 function setConsoleStatus(status) {
-  const dot   = document.getElementById("console-dot");
+  const dot = document.getElementById("console-dot");
   const label = document.getElementById("console-label");
   if (!dot || !label) return;
   dot.className = "console-status-dot";
   const map = {
     running: ["", "Running…"],
     success: ["green", "Accepted"],
-    error:   ["red",   "Error"],
-    warn:    ["yellow","TLE / Warning"],
-    idle:    ["",      "Idle"]
+    error: ["red", "Error"],
+    warn: ["yellow", "TLE / Warning"],
+    idle: ["", "Idle"]
   };
   const [cls, text] = map[status] || ["", status];
   if (cls) dot.classList.add(cls);
@@ -256,10 +256,10 @@ function renderTestCases(testCases) {
 }
 
 function runSingleTestCase(idx) {
-  const tc  = problemTestCases[idx];
+  const tc = problemTestCases[idx];
   if (!tc || !editor) return;
 
-  const params    = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(window.location.search);
   const problemId = params.get("id");
 
   setConsoleStatus("running");
@@ -275,33 +275,33 @@ function runSingleTestCase(idx) {
       custom_input: tc.input_data
     })
   })
-  .then(r => r.json())
-  .then(data => {
-    const out = (data.output || "").trim();
-    const exp = (tc.expected_output || "").trim();
-    const pass = out === exp;
+    .then(r => r.json())
+    .then(data => {
+      const out = (data.output || "").trim();
+      const exp = (tc.expected_output || "").trim();
+      const pass = out === exp;
 
-    // Update card result
-    const resEl = document.getElementById(`tc-result-${idx}`);
-    if (resEl) {
-      resEl.style.display = "flex";
-      resEl.className = `tc-result-row ${pass ? "pass" : "fail"}`;
-      resEl.innerHTML = pass
-        ? `✓ Passed`
-        : `✕ Wrong Answer — got: <code style="margin-left:6px;">${escapeHtml(out.substring(0,60))}</code>`;
-    }
+      // Update card result
+      const resEl = document.getElementById(`tc-result-${idx}`);
+      if (resEl) {
+        resEl.style.display = "flex";
+        resEl.className = `tc-result-row ${pass ? "pass" : "fail"}`;
+        resEl.innerHTML = pass
+          ? `✓ Passed`
+          : `✕ Wrong Answer — got: <code style="margin-left:6px;">${escapeHtml(out.substring(0, 60))}</code>`;
+      }
 
-    // Show in console
-    setConsoleStatus(pass ? "success" : "error");
-    updateOutputConsole(data.output, data.stderr);
-    updateTCResultsConsole([{ input: tc.input_data, expected: tc.expected_output, got: data.output, pass }]);
-    switchConsoleTab(document.querySelector(".console-tab"), "cout-output");
-  })
-  .catch(() => {
-    setConsoleStatus("error");
-    document.getElementById("output-content").textContent = "Run endpoint not available. Use Submit to test your solution.";
-    openConsole();
-  });
+      // Show in console
+      setConsoleStatus(pass ? "success" : "error");
+      updateOutputConsole(data.output, data.stderr);
+      updateTCResultsConsole([{ input: tc.input_data, expected: tc.expected_output, got: data.output, pass }]);
+      switchConsoleTab(document.querySelector(".console-tab"), "cout-output");
+    })
+    .catch(() => {
+      setConsoleStatus("error");
+      document.getElementById("output-content").textContent = "Run endpoint not available. Use Submit to test your solution.";
+      openConsole();
+    });
 }
 
 function addCustomTestCase() {
@@ -315,8 +315,8 @@ function closeCustomForm() {
 }
 
 function runWithCustom() {
-  const input     = document.getElementById("tc-custom-input")?.value || "";
-  const params    = new URLSearchParams(window.location.search);
+  const input = document.getElementById("tc-custom-input")?.value || "";
+  const params = new URLSearchParams(window.location.search);
   const problemId = params.get("id");
   if (!editor) return;
 
@@ -333,16 +333,16 @@ function runWithCustom() {
       custom_input: input
     })
   })
-  .then(r => r.json())
-  .then(data => {
-    setConsoleStatus(data.output !== undefined ? "success" : "error");
-    updateOutputConsole(data.output, data.stderr);
-    switchConsoleTab(document.getElementById("ctab-output") || document.querySelector(".console-tab"), "cout-output");
-  })
-  .catch(() => {
-    setConsoleStatus("idle");
-    document.getElementById("output-content").textContent = "Run endpoint not available.";
-  });
+    .then(r => r.json())
+    .then(data => {
+      setConsoleStatus(data.output !== undefined ? "success" : "error");
+      updateOutputConsole(data.output, data.stderr);
+      switchConsoleTab(document.getElementById("ctab-output") || document.querySelector(".console-tab"), "cout-output");
+    })
+    .catch(() => {
+      setConsoleStatus("idle");
+      document.getElementById("output-content").textContent = "Run endpoint not available.";
+    });
 }
 
 /* =========================================================
@@ -361,16 +361,32 @@ function loadProblemDetail() {
       document.title = `CodeJudge – ${problem.title}`;
 
       const hd = document.getElementById("header-difficulty");
-      if (hd) hd.innerHTML = `<span class="difficulty ${(problem.difficulty||'').toLowerCase()}">${problem.difficulty||''}</span>`;
+      if (hd) hd.innerHTML = `<span class="difficulty ${(problem.difficulty || '').toLowerCase()}">${problem.difficulty || ''}</span>`;
 
       // Description tab
       const titleEl = document.getElementById("title");
       if (titleEl) titleEl.textContent = problem.title;
       const badge = document.getElementById("difficultyBadge");
-      if (badge) badge.innerHTML = `<span class="difficulty ${(problem.difficulty||'').toLowerCase()}">${problem.difficulty||''}</span>`;
+      if (badge) badge.innerHTML = `<span class="difficulty ${(problem.difficulty || '').toLowerCase()}">${problem.difficulty || ''}</span>`;
       const desc = document.getElementById("description");
       if (desc) desc.textContent = problem.description;
+      const constraintsDiv = document.getElementById("descr-constraints");
 
+      if (constraintsDiv) {
+        if (problem.constraints && problem.constraints.trim() !== "") {
+          constraintsDiv.innerHTML = `
+      <div class="constraint-box">
+        ${escapeHtml(problem.constraints)}
+      </div>
+    `;
+        } else {
+          constraintsDiv.innerHTML = `
+      <p style="color:#475569; font-size:0.84rem;">
+        No constraints provided.
+      </p>
+    `;
+        }
+      }
       // Examples section in description tab
       const exDiv = document.getElementById("descr-examples");
       if (exDiv) {
@@ -406,36 +422,69 @@ function loadProblemDetail() {
    RUN CODE (all test cases)
    ========================================================= */
 function runCode() {
-  if (!editor) { showToast("Editor not ready", "error"); return; }
+  if (!editor) {
+    showToast("Editor not ready", "error");
+    return;
+  }
+
   const btn = document.getElementById("run-btn");
   btnLoading(btn, true, "Running…");
+
   setConsoleStatus("running");
   openConsole();
 
-  const params    = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(window.location.search);
   const problemId = params.get("id");
+
+  // 🔥 Use first sample test case OR empty input
+  let inputData = "";
+  if (problemTestCases.length > 0) {
+    inputData = problemTestCases[0].input_data;
+  }
 
   fetch(`${API_BASE}/run/`, {
     method: "POST",
-    headers: { "Content-Type": "application/json", "Authorization": `Bearer ${localStorage.getItem("access")}` },
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem("access")}`
+    },
     body: JSON.stringify({
       problem: problemId,
       code: editor.getValue(),
-      language: document.getElementById("language").value
+      language: document.getElementById("language").value,
+      custom_input: inputData   // 🔥 KEY CHANGE
     })
   })
-  .then(r => r.json())
-  .then(data => {
-    btnLoading(btn, false);
-    updateOutputConsole(data.output, data.stderr);
-    setConsoleStatus(data.output !== undefined ? "success" : "error");
-    switchConsoleTab(document.querySelector(".console-tab"), "cout-output");
-  })
-  .catch(() => {
-    btnLoading(btn, false);
-    setConsoleStatus("idle");
-    document.getElementById("output-content").textContent = "⚠ Run endpoint not available. Use Submit.";
-  });
+    .then(res => res.json())
+    .then(data => {
+      btnLoading(btn, false);
+
+      // ✅ Only show output (NO validation)
+      updateOutputConsole(data.output, data.stderr);
+      document.getElementById("tc-results-content").innerHTML = `
+      <p style="color:#64748b; padding:12px;">
+        ⚡ Run mode: Showing output only (no validation)
+      </p>
+    `;
+
+      // 🔥 Smart status handling
+      if (data.stderr) {
+        setConsoleStatus("error");
+        switchConsoleTab(document.querySelectorAll(".console-tab")[1], "cout-errors");
+      } else {
+        setConsoleStatus("success");
+        switchConsoleTab(document.querySelectorAll(".console-tab")[0], "cout-output");
+      }
+    })
+    .catch(() => {
+      btnLoading(btn, false);
+      setConsoleStatus("error");
+
+      document.getElementById("output-content").textContent =
+        "Run failed. Check backend.";
+
+      showToast("Run failed", "error");
+    });
 }
 
 /* =========================================================
@@ -448,7 +497,7 @@ function submitCode() {
   setConsoleStatus("running");
   openConsole();
 
-  const params    = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(window.location.search);
   const problemId = params.get("id");
 
   fetch(`${API_BASE}/submit/`, {
@@ -460,26 +509,26 @@ function submitCode() {
       language: document.getElementById("language").value
     })
   })
-  .then(r => r.json())
-  .then(data => {
-    btnLoading(btn, false);
-    renderVerdict(data);
-  })
-  .catch(err => {
-    btnLoading(btn, false);
-    setConsoleStatus("error");
-    document.getElementById("output-content").textContent = `Network error: ${err.message}`;
-    showToast("Submission failed", "error");
-  });
+    .then(r => r.json())
+    .then(data => {
+      btnLoading(btn, false);
+      renderVerdict(data);
+    })
+    .catch(err => {
+      btnLoading(btn, false);
+      setConsoleStatus("error");
+      document.getElementById("output-content").textContent = `Network error: ${err.message}`;
+      showToast("Submission failed", "error");
+    });
 }
 
 function renderVerdict(data) {
   const verdictMap = {
-    AC:  { label: "Accepted",            cls: "ac",  st: "success", toast: "success" },
-    WA:  { label: "Wrong Answer",        cls: "wa",  st: "error",   toast: "error"   },
-    TLE: { label: "Time Limit Exceeded", cls: "tle", st: "warn",    toast: "error"   },
-    CE:  { label: "Compilation Error",   cls: "ce",  st: "error",   toast: "error"   },
-    RE:  { label: "Runtime Error",       cls: "re",  st: "error",   toast: "error"   }
+    AC: { label: "Accepted", cls: "ac", st: "success", toast: "success" },
+    WA: { label: "Wrong Answer", cls: "wa", st: "error", toast: "error" },
+    TLE: { label: "Time Limit Exceeded", cls: "tle", st: "warn", toast: "error" },
+    CE: { label: "Compilation Error", cls: "ce", st: "error", toast: "error" },
+    RE: { label: "Runtime Error", cls: "re", st: "error", toast: "error" }
   };
 
   const v = verdictMap[data.verdict] || { label: data.verdict || "Unknown", cls: "wa", st: "error", toast: "error" };
@@ -533,23 +582,23 @@ function verdictIcons(v) {
    HELPERS – output console
    ========================================================= */
 function updateOutputConsole(stdout, stderr) {
-  const out  = document.getElementById("output-content");
+  const out = document.getElementById("output-content");
   const errs = document.getElementById("errors-content");
-  if (out)  out.textContent  = stdout || "(no output)";
+  if (out) out.textContent = stdout || "(no output)";
   if (errs) errs.textContent = stderr || "No errors.";
 }
 
 function updateTCResultsConsole(results) {
   const el = document.getElementById("tc-results-content");
   if (!el) return;
-  const pass  = results.filter(r => r.pass).length;
+  const pass = results.filter(r => r.pass).length;
   const total = results.length;
 
   const badge = document.getElementById("tc-badge");
   if (badge) {
     badge.style.display = "inline-flex";
-    badge.textContent   = `${pass}/${total}`;
-    badge.className     = `tc-result-badge ${pass === total ? "all-pass" : ""}`;
+    badge.textContent = `${pass}/${total}`;
+    badge.className = `tc-result-badge ${pass === total ? "all-pass" : ""}`;
   }
 
   el.innerHTML = results.map((r, i) => `
@@ -558,8 +607,8 @@ function updateTCResultsConsole(results) {
       <div class="tc-console-body">
         <div class="tc-console-title">Case ${i + 1} — ${r.pass ? "Passed" : "Wrong Answer"}</div>
         ${!r.pass ? `
-          <div class="tc-console-detail">Expected: ${escapeHtml((r.expected||'').substring(0,80))}</div>
-          <div class="tc-console-detail">Got:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${escapeHtml((r.got||'').substring(0,80))}</div>
+          <div class="tc-console-detail">Expected: ${escapeHtml((r.expected || '').substring(0, 80))}</div>
+          <div class="tc-console-detail">Got:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${escapeHtml((r.got || '').substring(0, 80))}</div>
         ` : ""}
       </div>
     </div>`).join('');
@@ -581,14 +630,14 @@ function btnLoading(btn, loading, text) {
    LOAD PROBLEMS (index.html)
    ========================================================= */
 function loadProblems() {
-  const search     = document.getElementById("search")?.value.trim() || "";
+  const search = document.getElementById("search")?.value.trim() || "";
   const difficulty = document.getElementById("difficulty")?.value || "";
-  const topic      = document.getElementById("topic")?.value || "";
+  const topic = document.getElementById("topic")?.value || "";
 
   let url = `${API_BASE}/problems/?`;
-  if (search)     url += `search=${encodeURIComponent(search)}&`;
+  if (search) url += `search=${encodeURIComponent(search)}&`;
   if (difficulty) url += `difficulty=${encodeURIComponent(difficulty)}&`;
-  if (topic)      url += `topic=${encodeURIComponent(topic)}&`;
+  if (topic) url += `topic=${encodeURIComponent(topic)}&`;
 
   const list = document.getElementById("problem-list");
   if (list) list.innerHTML = `<div class="spinner"></div>`;
@@ -635,7 +684,7 @@ function loadProblems() {
         tr.innerHTML = `
           <td class="problem-number">${problem.id}</td>
           <td><a href="problem.html?id=${problem.id}" class="problem-title-link">${escapeHtml(problem.title)}</a></td>
-          <td><span class="difficulty ${(problem.difficulty||'').toLowerCase()}">${problem.difficulty||'—'}</span></td>
+          <td><span class="difficulty ${(problem.difficulty || '').toLowerCase()}">${problem.difficulty || '—'}</span></td>
           <td>${tagHtml}</td>
           <td><a href="problem.html?id=${problem.id}" class="solve-btn">Solve →</a></td>`;
 
@@ -658,43 +707,43 @@ function loadSubmissions() {
   fetch(`${API_BASE}/submissions/`, {
     headers: { "Authorization": `Bearer ${localStorage.getItem("access")}` }
   })
-  .then(r => { if (r.status === 401) { window.location.href = "login.html"; return []; } return r.json(); })
-  .then(data => {
-    const tbody = document.getElementById("submission-list");
-    if (!tbody) return;
-    tbody.innerHTML = "";
+    .then(r => { if (r.status === 401) { window.location.href = "login.html"; return []; } return r.json(); })
+    .then(data => {
+      const tbody = document.getElementById("submission-list");
+      if (!tbody) return;
+      tbody.innerHTML = "";
 
-    if (!data || data.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="4">
+      if (!data || data.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="4">
         <div class="empty-state">
           <h3>No submissions yet</h3>
           <p>Solve a problem and submit your first solution!</p>
           <a href="index.html" style="display:inline-flex;margin-top:14px;padding:10px 22px;border-radius:10px;background:linear-gradient(135deg,#6366f1,#4f46e5);color:#fff;font-weight:600;text-decoration:none;">Browse Problems</a>
         </div>
       </td></tr>`;
-      return;
-    }
+        return;
+      }
 
-    const ll = { PY: "Python", CPP: "C++", JAVA: "Java" };
-    const vl = { AC: "Accepted", WA: "Wrong Answer", TLE: "TLE", CE: "Compile Error", RE: "Runtime Error" };
+      const ll = { PY: "Python", CPP: "C++", JAVA: "Java" };
+      const vl = { AC: "Accepted", WA: "Wrong Answer", TLE: "TLE", CE: "Compile Error", RE: "Runtime Error" };
 
-    data.forEach((sub, i) => {
-      const tr = document.createElement("tr");
-      tr.className = "fade-in";
-      tr.style.animationDelay = `${i * 0.05}s`;
-      tr.innerHTML = `
+      data.forEach((sub, i) => {
+        const tr = document.createElement("tr");
+        tr.className = "fade-in";
+        tr.style.animationDelay = `${i * 0.05}s`;
+        tr.innerHTML = `
         <td>${escapeHtml(sub.problem_title || `Problem #${sub.problem}`)}</td>
-        <td><span class="verdict-badge ${sub.verdict}">${verdictIcons(sub.verdict)} ${vl[sub.verdict]||sub.verdict}</span></td>
-        <td><span class="lang-badge">${ll[sub.language]||sub.language}</span></td>
+        <td><span class="verdict-badge ${sub.verdict}">${verdictIcons(sub.verdict)} ${vl[sub.verdict] || sub.verdict}</span></td>
+        <td><span class="lang-badge">${ll[sub.language] || sub.language}</span></td>
         <td class="time-text">${new Date(sub.submitted_at).toLocaleString()}</td>`;
-      tbody.appendChild(tr);
+        tbody.appendChild(tr);
+      });
+    })
+    .catch(err => {
+      console.error("loadSubmissions:", err);
+      const tbody = document.getElementById("submission-list");
+      if (tbody) tbody.innerHTML = `<tr><td colspan="4" style="color:#ef4444;text-align:center;padding:20px;">Failed to load</td></tr>`;
     });
-  })
-  .catch(err => {
-    console.error("loadSubmissions:", err);
-    const tbody = document.getElementById("submission-list");
-    if (tbody) tbody.innerHTML = `<tr><td colspan="4" style="color:#ef4444;text-align:center;padding:20px;">Failed to load</td></tr>`;
-  });
 }
 
 /* =========================================================
@@ -714,19 +763,19 @@ function loginUser() {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password })
   })
-  .then(r => r.json())
-  .then(data => {
-    btnLoading(btn, false);
-    if (data.access) {
-      localStorage.setItem("access", data.access);
-      localStorage.setItem("refresh", data.refresh);
-      setMsg(msg, "Login successful! Redirecting…", "success");
-      setTimeout(() => { window.location.href = "index.html"; }, 900);
-    } else {
-      setMsg(msg, data.detail || "Invalid username or password.", "error");
-    }
-  })
-  .catch(() => { btnLoading(btn, false); setMsg(msg, "Connection error. Is the server running?", "error"); });
+    .then(r => r.json())
+    .then(data => {
+      btnLoading(btn, false);
+      if (data.access) {
+        localStorage.setItem("access", data.access);
+        localStorage.setItem("refresh", data.refresh);
+        setMsg(msg, "Login successful! Redirecting…", "success");
+        setTimeout(() => { window.location.href = "index.html"; }, 900);
+      } else {
+        setMsg(msg, data.detail || "Invalid username or password.", "error");
+      }
+    })
+    .catch(() => { btnLoading(btn, false); setMsg(msg, "Connection error. Is the server running?", "error"); });
 }
 
 function signupUser() {
@@ -743,17 +792,17 @@ function signupUser() {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password })
   })
-  .then(r => r.json())
-  .then(data => {
-    btnLoading(btn, false);
-    if (data.message) {
-      setMsg(msg, "Account created! Redirecting…", "success");
-      setTimeout(() => { window.location.href = "login.html"; }, 1500);
-    } else {
-      setMsg(msg, data.error || "Signup failed. Try a different username.", "error");
-    }
-  })
-  .catch(() => { btnLoading(btn, false); setMsg(msg, "Connection error.", "error"); });
+    .then(r => r.json())
+    .then(data => {
+      btnLoading(btn, false);
+      if (data.message) {
+        setMsg(msg, "Account created! Redirecting…", "success");
+        setTimeout(() => { window.location.href = "login.html"; }, 1500);
+      } else {
+        setMsg(msg, data.error || "Signup failed. Try a different username.", "error");
+      }
+    })
+    .catch(() => { btnLoading(btn, false); setMsg(msg, "Connection error.", "error"); });
 }
 
 function setMsg(el, text, type) {
