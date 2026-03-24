@@ -1,0 +1,1560 @@
+[
+  {
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+      "action_time": "2026-01-11T10:41:03.168Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "1",
+      "object_repr": "Sum of Two Numbers",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+      "action_time": "2026-01-11T10:41:26.395Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "1",
+      "object_repr": "TestCase for Sum of Two Numbers",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+      "action_time": "2026-01-11T10:41:35.422Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "2",
+      "object_repr": "TestCase for Sum of Two Numbers",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+      "action_time": "2026-01-11T10:41:54.651Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "3",
+      "object_repr": "TestCase for Sum of Two Numbers",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+      "action_time": "2026-01-11T10:42:57.105Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "1",
+      "object_repr": "Submission by ayush - AC",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+      "action_time": "2026-01-11T11:29:01.675Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "6",
+      "object_repr": "Submission by ayush - PENDING",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+      "action_time": "2026-01-11T11:29:01.675Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "5",
+      "object_repr": "Submission by ayush - PENDING",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+      "action_time": "2026-01-11T11:29:01.675Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "4",
+      "object_repr": "Submission by ayush - PENDING",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+      "action_time": "2026-01-11T11:29:01.675Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "3",
+      "object_repr": "Submission by ayush - PENDING",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+      "action_time": "2026-01-14T06:07:32.180Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "2",
+      "object_repr": "Maximum of Three Numbers",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+      "action_time": "2026-01-14T06:07:52.541Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "4",
+      "object_repr": "TestCase for Maximum of Three Numbers",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+      "action_time": "2026-01-14T06:08:07.439Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "5",
+      "object_repr": "TestCase for Maximum of Three Numbers",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+      "action_time": "2026-01-14T06:08:25.827Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "6",
+      "object_repr": "TestCase for Maximum of Three Numbers",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+      "action_time": "2026-01-14T06:10:09.449Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "3",
+      "object_repr": "Reverse a Number",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+      "action_time": "2026-01-14T06:10:26.371Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "7",
+      "object_repr": "TestCase for Reverse a Number",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+      "action_time": "2026-01-14T06:10:38.697Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "8",
+      "object_repr": "TestCase for Reverse a Number",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+      "action_time": "2026-01-14T06:10:50.072Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "8",
+      "object_repr": "TestCase for Reverse a Number",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Expected output\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+      "action_time": "2026-01-14T06:11:05.686Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "9",
+      "object_repr": "TestCase for Reverse a Number",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+      "action_time": "2026-01-14T06:11:15.826Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "9",
+      "object_repr": "TestCase for Reverse a Number",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Expected output\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+      "action_time": "2026-01-14T06:13:20.952Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "55",
+      "object_repr": "Submission by ayush - WA",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Code\", \"Verdict\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+      "action_time": "2026-01-25T10:23:15.659Z",
+      "user": 1,
+      "content_type": 4,
+      "object_id": "2",
+      "object_repr": "Ayushh",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+      "action_time": "2026-01-25T10:37:53.577Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "1",
+      "object_repr": "Sum of Two Numbers",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+      "action_time": "2026-01-25T10:54:34.546Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "3",
+      "object_repr": "Reverse a Number",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+      "action_time": "2026-01-25T10:54:34.546Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "2",
+      "object_repr": "Maximum of Three Numbers",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+      "action_time": "2026-01-25T10:55:34.663Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "4",
+      "object_repr": "Binary Search",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+      "action_time": "2026-01-25T10:57:25.451Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "10",
+      "object_repr": "TestCase for Binary Search",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+      "action_time": "2026-01-25T10:57:41.179Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "11",
+      "object_repr": "TestCase for Binary Search",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 28,
+    "fields": {
+      "action_time": "2026-01-25T11:07:20.996Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "5",
+      "object_repr": "Find Peak Element",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 29,
+    "fields": {
+      "action_time": "2026-01-25T11:07:50.826Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "12",
+      "object_repr": "TestCase for Find Peak Element",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 30,
+    "fields": {
+      "action_time": "2026-01-25T11:08:22.529Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "13",
+      "object_repr": "TestCase for Find Peak Element",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 31,
+    "fields": {
+      "action_time": "2026-03-23T12:55:06.418Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "6",
+      "object_repr": "Two Sum",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 32,
+    "fields": {
+      "action_time": "2026-03-23T12:56:05.267Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "14",
+      "object_repr": "TestCase for Two Sum",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 33,
+    "fields": {
+      "action_time": "2026-03-23T12:59:59.795Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "15",
+      "object_repr": "TestCase for Two Sum",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 34,
+    "fields": {
+      "action_time": "2026-03-23T13:00:10.292Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "15",
+      "object_repr": "TestCase for Two Sum",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Expected output\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 35,
+    "fields": {
+      "action_time": "2026-03-23T13:01:55.427Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "15",
+      "object_repr": "TestCase for Two Sum",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Expected output\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 36,
+    "fields": {
+      "action_time": "2026-03-23T13:02:03.266Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "14",
+      "object_repr": "TestCase for Two Sum",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Expected output\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 37,
+    "fields": {
+      "action_time": "2026-03-23T13:06:48.677Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "7",
+      "object_repr": "Frog Jump",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 38,
+    "fields": {
+      "action_time": "2026-03-23T13:07:28.450Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "16",
+      "object_repr": "TestCase for Frog Jump",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 39,
+    "fields": {
+      "action_time": "2026-03-23T13:08:20.628Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "17",
+      "object_repr": "TestCase for Frog Jump",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 40,
+    "fields": {
+      "action_time": "2026-03-24T10:43:34.314Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "8",
+      "object_repr": "Longest Substring Without Repeating Characters",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 41,
+    "fields": {
+      "action_time": "2026-03-24T10:43:38.823Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "8",
+      "object_repr": "Longest Substring Without Repeating Characters",
+      "action_flag": 2,
+      "change_message": "[]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 42,
+    "fields": {
+      "action_time": "2026-03-24T10:43:54.256Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "18",
+      "object_repr": "TestCase for Longest Substring Without Repeating Characters",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 43,
+    "fields": {
+      "action_time": "2026-03-24T10:44:15.203Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "19",
+      "object_repr": "TestCase for Longest Substring Without Repeating Characters",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 44,
+    "fields": {
+      "action_time": "2026-03-24T10:44:31.182Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "20",
+      "object_repr": "TestCase for Longest Substring Without Repeating Characters",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 45,
+    "fields": {
+      "action_time": "2026-03-24T13:41:59.277Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "8",
+      "object_repr": "Longest Substring Without Repeating Characters",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Constraints\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 46,
+    "fields": {
+      "action_time": "2026-03-24T13:42:15.250Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "7",
+      "object_repr": "Frog Jump",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Constraints\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 47,
+    "fields": {
+      "action_time": "2026-03-24T13:42:30.351Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "6",
+      "object_repr": "Two Sum",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Constraints\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 48,
+    "fields": {
+      "action_time": "2026-03-24T13:42:39.475Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "5",
+      "object_repr": "Find Peak Element",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Constraints\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 49,
+    "fields": {
+      "action_time": "2026-03-24T13:42:50.509Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "4",
+      "object_repr": "Binary Search",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Constraints\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 50,
+    "fields": {
+      "action_time": "2026-03-24T13:43:15.906Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "8",
+      "object_repr": "Longest Substring Without Repeating Characters",
+      "action_flag": 2,
+      "change_message": "[]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 51,
+    "fields": {
+      "action_time": "2026-03-24T13:43:24.282Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "4",
+      "object_repr": "Binary Search",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Constraints\"]}}]"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$rziOXnmD4V0wDDVThOiRZG$7tDGt/ZowYRjpHR6ppDQEcsVCgZMx48L+S0txCWINLI=",
+      "last_login": "2026-03-24T10:42:12.272Z",
+      "is_superuser": true,
+      "username": "ayush",
+      "first_name": "",
+      "last_name": "",
+      "email": "ayushmetkar3@gmail.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2026-01-11T10:39:32.949Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$TX2YZ5so4NQ6gQy45jcGck$AQ1FmgTnkSOAA2Gn71K4MQ5jmtJD07eVWzxpnHyRWl4=",
+      "last_login": "2026-02-05T12:58:08.608Z",
+      "is_superuser": true,
+      "username": "Ayush",
+      "first_name": "",
+      "last_name": "",
+      "email": "ayushmetkar3@gmail.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2026-02-05T12:57:51.362Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$8PyTuoibsaE9g6IPZIVqBv$vDIPF3cWyPGUdoe1vBGtEKXMBi1V0dP7xJIfGCmuAkU=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "Ayush@1911",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-03-23T11:37:12.288Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$rQpvIsq2Q4b5JlsQHwLgJP$L6Ez32JBuxtZ0T9dw4Z6fYi7kmDwbO8hcpjocTPHVsM=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "Shubham",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-03-23T11:38:52.414Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$YSDWxbEZEgcvH2qsw6c7Ro$eJcgRmeMbKD+8MXUxL78Vtm/7OMsx3dnxvrwXdQtEp0=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "tester",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-03-24T10:07:37.738Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$DEoAwJdF1rlVIWaxNOnu69$LW5akZBZIHb5N64uXyfDq6E2OZBtUtZ4oK9muVsQ0kE=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "testuser",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-03-24T10:23:21.457Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "4chn7bq28q71kvvfci3jd93ikbw6j9qw",
+    "fields": {
+      "session_data": ".eJxVjEEOwiAQRe_C2hBABweX7j0DmYFBqoYmpV0Z726bdKHb_977bxVpmWtcukxxyOqirDr8bkzpKW0D-UHtPuo0tnkaWG-K3mnXtzHL67q7fweVel1rWFXvMKAxJmEIxQc-oSQA68QFxjMLglgwVIhyocLm6AEwiEnCTn2-3t04Pw:1vwHFB:AJ2lPlVYNZ8Av8Yil_AWe6aG2zZJsv4Qu3cC1h8Pxgs",
+      "expire_date": "2026-03-14T10:08:17.006Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "5i2ecoc9vbku8wbdxxt1eiwp8ind2t2s",
+    "fields": {
+      "session_data": ".eJxVjEEOwiAQRe_C2hBABweX7j0DmYFBqoYmpV0Z726bdKHb_977bxVpmWtcukxxyOqirDr8bkzpKW0D-UHtPuo0tnkaWG-K3mnXtzHL67q7fweVel1rWFXvMKAxJmEIxQc-oSQA68QFxjMLglgwVIhyocLm6AEwiEnCTn2-3t04Pw:1vffII:910EJoX4vHfU8ULwnCVWsBExaVvQEmt4iHYXgGS-ZAs",
+      "expire_date": "2026-01-27T14:22:50.240Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "7xtthfkgwv4l30wf1gafw94ubdyz8cxs",
+    "fields": {
+      "session_data": ".eJxVjEEOwiAQRe_C2hBABweX7j0DmYFBqoYmpV0Z726bdKHb_977bxVpmWtcukxxyOqirDr8bkzpKW0D-UHtPuo0tnkaWG-K3mnXtzHL67q7fweVel1rWFXvMKAxJmEIxQc-oSQA68QFxjMLglgwVIhyocLm6AEwiEnCTn2-3t04Pw:1vesrp:bfHl62kXjmQZbGpKOULLAD-Qg8kxi2ifKMLA_UTNgEE",
+      "expire_date": "2026-01-25T10:40:17.470Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "ia0ofo8ylltmrt96cd8ltu90qyenbnpg",
+    "fields": {
+      "session_data": ".eJxVjEEOwiAQRe_C2hBABweX7j0DmYFBqoYmpV0Z726bdKHb_977bxVpmWtcukxxyOqirDr8bkzpKW0D-UHtPuo0tnkaWG-K3mnXtzHL67q7fweVel1rWFXvMKAxJmEIxQc-oSQA68QFxjMLglgwVIhyocLm6AEwiEnCTn2-3t04Pw:1w4zDA:XULnb45jcTbCi25WbUFrlEzGS4sdbol25smmPNy8t7E",
+      "expire_date": "2026-04-07T10:42:12.281Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "jrs5tqx9t1pskotxudzjmx4ap6ddxnw8",
+    "fields": {
+      "session_data": ".eJxVjEEOwiAQRe_C2hBABweX7j0DmYFBqoYmpV0Z726bdKHb_977bxVpmWtcukxxyOqirDr8bkzpKW0D-UHtPuo0tnkaWG-K3mnXtzHL67q7fweVel1rWFXvMKAxJmEIxQc-oSQA68QFxjMLglgwVIhyocLm6AEwiEnCTn2-3t04Pw:1w4JCy:anoDi8h8KY0w1z3G45wbpAMpVn9PUIkBujRZB3NInCc",
+      "expire_date": "2026-04-05T13:51:12.943Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "x9dwd3fvhvgk1n05mowghw2xk1k4658s",
+    "fields": {
+      "session_data": ".eJxVjEEOwiAQRe_C2hBABweX7j0DmYFBqoYmpV0Z726bdKHb_977bxVpmWtcukxxyOqirDr8bkzpKW0D-UHtPuo0tnkaWG-K3mnXtzHL67q7fweVel1rWFXvMKAxJmEIxQc-oSQA68QFxjMLglgwVIhyocLm6AEwiEnCTn2-3t04Pw:1vnz5z:kWecBRGcdYcWIWqgXjt6MZN_66-omCKFtNgqybf6caY",
+      "expire_date": "2026-02-19T13:08:31.989Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "xw5spg6bwtfs3o1rbdvypnlltbzrxzdm",
+    "fields": {
+      "session_data": ".eJxVjEEOwiAQRe_C2hBABweX7j0DmYFBqoYmpV0Z726bdKHb_977bxVpmWtcukxxyOqirDr8bkzpKW0D-UHtPuo0tnkaWG-K3mnXtzHL67q7fweVel1rWFXvMKAxJmEIxQc-oSQA68QFxjMLglgwVIhyocLm6AEwiEnCTn2-3t04Pw:1vjxGo:mwpK3JCnkNbtcXGCy0JHNdkVsofeln34ZEpzSqIYg0s",
+      "expire_date": "2026-02-08T10:23:02.931Z"
+    }
+  },
+  {
+    "model": "judge.problem",
+    "pk": 4,
+    "fields": {
+      "title": "Binary Search",
+      "description": "Given an array of integers nums which is sorted in ascending order, and an integer target, write a function to search target in nums. If target exists, then return its index. Otherwise, return -1.\r\n\r\nYou must write an algorithm with O(log n) runtime complexity.",
+      "constraints": "1 <= nums.length <= 10^4\r\n\r\n-10^4 < nums[i], target < 10^4",
+      "difficulty": "Easy",
+      "created_at": "2026-01-25T10:55:34.659Z",
+      "topic": "Binary Search"
+    }
+  },
+  {
+    "model": "judge.problem",
+    "pk": 5,
+    "fields": {
+      "title": "Find Peak Element",
+      "description": "A peak element is an element that is strictly greater than its neighbors.\r\n\r\nGiven a 0-indexed integer array nums, find a peak element, and return its index. If the array contains multiple peaks, return the index to any of the peaks.\r\n\r\nYou may imagine that nums[-1] = nums[n] = -Γê₧. In other words, an element is always considered to be strictly greater than a neighbor that is outside the array.",
+      "constraints": "1 <= nums.length <= 1000\r\n-2^31 <= nums[i] <= 2^31 - 1\r\nnums[i] != nums[i + 1] for all valid i.",
+      "difficulty": "Medium",
+      "created_at": "2026-01-25T11:07:20.993Z",
+      "topic": "Binary Search"
+    }
+  },
+  {
+    "model": "judge.problem",
+    "pk": 6,
+    "fields": {
+      "title": "Two Sum",
+      "description": "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.\r\n\r\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.\r\n\r\nYou can return the answer in any order.",
+      "constraints": "2 <= nums.length <= 10^4\r\n-10^9 <= nums[i] <= 10^9\r\n-10^9 <= target <= 10^9",
+      "difficulty": "Medium",
+      "created_at": "2026-03-23T12:55:06.414Z",
+      "topic": "Array"
+    }
+  },
+  {
+    "model": "judge.problem",
+    "pk": 7,
+    "fields": {
+      "title": "Frog Jump",
+      "description": "A frog is crossing a river. The river is divided into some number of units, and at each unit, there may or may not exist a stone. The frog can jump on a stone, but it must not jump into the water.\r\n\r\nGiven a list of stones positions (in units) in sorted ascending order, determine if the frog can cross the river by landing on the last stone. Initially, the frog is on the first stone and assumes the first jump must be 1 unit.\r\n\r\nIf the frog's last jump was k units, its next jump must be either k - 1, k, or k + 1 units. The frog can only jump in the forward direction.",
+      "constraints": "2 <= stones.length <= 2000\r\n0 <= stones[i] <= 2^31 - 1\r\nstones[0] == 0\r\nstones is sorted in a strictly increasing order.",
+      "difficulty": "Hard",
+      "created_at": "2026-03-23T13:06:48.674Z",
+      "topic": "Dynamic Programming"
+    }
+  },
+  {
+    "model": "judge.problem",
+    "pk": 8,
+    "fields": {
+      "title": "Longest Substring Without Repeating Characters",
+      "description": "Given a string s, find the length of the longest substring without duplicate characters.",
+      "constraints": "0 <= s.length <= 5 * 10^4\r\ns consists of English letters, digits, symbols and spaces.",
+      "difficulty": "Medium",
+      "created_at": "2026-03-24T10:43:34.311Z",
+      "topic": "String & Hash Table"
+    }
+  },
+  {
+    "model": "judge.testcase",
+    "pk": 10,
+    "fields": {
+      "problem": 4,
+      "input_data": "5\r\n1 3 5 7 9\r\n7",
+      "expected_output": "3",
+      "is_sample": true
+    }
+  },
+  {
+    "model": "judge.testcase",
+    "pk": 11,
+    "fields": {
+      "problem": 4,
+      "input_data": "6\r\n10 20 30 40 50 60\r\n25",
+      "expected_output": "-1",
+      "is_sample": true
+    }
+  },
+  {
+    "model": "judge.testcase",
+    "pk": 12,
+    "fields": {
+      "problem": 5,
+      "input_data": "4\r\n1 2 3 1",
+      "expected_output": "2",
+      "is_sample": true
+    }
+  },
+  {
+    "model": "judge.testcase",
+    "pk": 13,
+    "fields": {
+      "problem": 5,
+      "input_data": "7\r\n1 2 1 3 5 6 4",
+      "expected_output": "5",
+      "is_sample": true
+    }
+  },
+  {
+    "model": "judge.testcase",
+    "pk": 14,
+    "fields": {
+      "problem": 6,
+      "input_data": "4\r\n2 7 11 15\r\n9",
+      "expected_output": "0 1",
+      "is_sample": true
+    }
+  },
+  {
+    "model": "judge.testcase",
+    "pk": 15,
+    "fields": {
+      "problem": 6,
+      "input_data": "3\r\n3 2 4\r\n6",
+      "expected_output": "1 2",
+      "is_sample": true
+    }
+  },
+  {
+    "model": "judge.testcase",
+    "pk": 16,
+    "fields": {
+      "problem": 7,
+      "input_data": "8\r\n0 1 3 5 6 8 12 17",
+      "expected_output": "true",
+      "is_sample": true
+    }
+  },
+  {
+    "model": "judge.testcase",
+    "pk": 17,
+    "fields": {
+      "problem": 7,
+      "input_data": "8\r\n0 1 2 3 4 8 9 11",
+      "expected_output": "false",
+      "is_sample": true
+    }
+  },
+  {
+    "model": "judge.testcase",
+    "pk": 18,
+    "fields": {
+      "problem": 8,
+      "input_data": "abcabcbb",
+      "expected_output": "3",
+      "is_sample": true
+    }
+  },
+  {
+    "model": "judge.testcase",
+    "pk": 19,
+    "fields": {
+      "problem": 8,
+      "input_data": "bbbbb",
+      "expected_output": "1",
+      "is_sample": true
+    }
+  },
+  {
+    "model": "judge.testcase",
+    "pk": 20,
+    "fields": {
+      "problem": 8,
+      "input_data": "pwwkew",
+      "expected_output": "3",
+      "is_sample": true
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 61,
+    "fields": {
+      "user": 1,
+      "problem": 4,
+      "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n\n    vector<int> arr(n);\n    for (int i = 0; i < n; i++) cin >> arr[i];\n\n    int x;\n    cin >> x;\n\n    int l = 0, r = n - 1;\n\n    while (l <= r) {\n        int mid = l + (r - l) / 2;\n        if (arr[mid] == x) {\n            cout << mid;\n            return 0;\n        } else if (arr[mid] < x) {\n            l = mid + 1;\n        } else {\n            r = mid - 1;\n        }\n    }\n\n    cout << -1;\n    return 0;\n}",
+      "language": "CPP",
+      "verdict": "AC",
+      "execution_time": 0.3917,
+      "error_message": null,
+      "submitted_at": "2026-01-25T11:12:59.331Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 62,
+    "fields": {
+      "user": 1,
+      "problem": 4,
+      "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n\n    vector<int> arr(n);\n    for (int i = 0; i < n; i++) cin >> arr[i];\n\n    int x;\n    cin >> x;\n\n    \n    cout << -1;\n    return 0;\n}",
+      "language": "CPP",
+      "verdict": "WA",
+      "execution_time": null,
+      "error_message": null,
+      "submitted_at": "2026-01-25T11:13:34.649Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 63,
+    "fields": {
+      "user": 1,
+      "problem": 4,
+      "code": "// Write your code here\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n\n    vector<int> arr(n);\n    for(int i=0;i<n;i++) cin >> arr[i];\n\n    int x;\n    cin >> x;\n\n    int l = 0, r = n - 1;\n\n    while(l <= r) {\n        int mid = (l + r) / 2;\n\n        if(arr[mid] == x) {\n            cout << mid + 1;   // Γ¥î wrong (1-based index)\n            return 0;\n        }\n        else if(arr[mid] < x)\n            l = mid + 1;\n        else\n            r = mid - 1;\n    }\n\n    cout << -1;\n}",
+      "language": "CPP",
+      "verdict": "PENDING",
+      "execution_time": null,
+      "error_message": null,
+      "submitted_at": "2026-02-05T13:26:26.047Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 64,
+    "fields": {
+      "user": 1,
+      "problem": 4,
+      "code": "n = int(input())\narr = list(map(int,input().split()))\nx = int(input())\n\nfor i in range(n):\n    if arr[i] == x:\n        print(i+1)   # Γ¥î wrong indexing\n        exit()\n\nprint(-1)",
+      "language": "PY",
+      "verdict": "PENDING",
+      "execution_time": null,
+      "error_message": null,
+      "submitted_at": "2026-02-05T13:27:35.259Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 65,
+    "fields": {
+      "user": 1,
+      "problem": 4,
+      "code": "// Write your code here\nn = int(input())\narr = list(map(int,input().split()))\nx = int(input())\n\nfor i in range(n):\n    if arr[i] == x:\n        print(i+1)   # Γ¥î wrong indexing\n        exit()\n\nprint(-1)",
+      "language": "PY",
+      "verdict": "PENDING",
+      "execution_time": null,
+      "error_message": null,
+      "submitted_at": "2026-02-05T13:38:59.161Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 66,
+    "fields": {
+      "user": 1,
+      "problem": 4,
+      "code": "n = int(input())\narr = list(map(int, input().split()))\nx = int(input())\n\nl, r = 0, n - 1\n\nwhile l <= r:\n    mid = (l + r) // 2\n\n    if arr[mid] == x:\n        print(mid)\n        exit()\n    elif arr[mid] < x:\n        l = mid + 1\n    else:\n        r = mid - 1\n\nprint(-1)",
+      "language": "PY",
+      "verdict": "AC",
+      "execution_time": 0.111,
+      "error_message": null,
+      "submitted_at": "2026-02-05T13:40:28.588Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 67,
+    "fields": {
+      "user": 1,
+      "problem": 4,
+      "code": "n = int(input())\narr = list(map(int, input().split()))\nx = int(input())\n\nfor i in range(n):\n    if arr[i] == x:\n        print(i + 1)   # Γ¥î wrong indexing\n        exit()\n\nprint(-1)",
+      "language": "PY",
+      "verdict": "PENDING",
+      "execution_time": null,
+      "error_message": null,
+      "submitted_at": "2026-02-05T13:40:45.766Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 68,
+    "fields": {
+      "user": 1,
+      "problem": 4,
+      "code": "while(true) {\n    // infinite loop\n}",
+      "language": "PY",
+      "verdict": "RE",
+      "execution_time": null,
+      "error_message": "File \"C:\\Users\\ayush\\AppData\\Local\\Temp\\tmpau3lidjr\\main.py\", line 1\r\n    while(true) {\r\n                ^\r\nSyntaxError: invalid syntax",
+      "submitted_at": "2026-02-05T13:41:04.611Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 69,
+    "fields": {
+      "user": 1,
+      "problem": 4,
+      "code": "while(true) {\n    // infinite loop\n}\n// Write your code here",
+      "language": "PY",
+      "verdict": "RE",
+      "execution_time": null,
+      "error_message": "File \"C:\\Users\\ayush\\AppData\\Local\\Temp\\tmp6q3qky4w\\main.py\", line 1\r\n    while(true) {\r\n                ^\r\nSyntaxError: invalid syntax",
+      "submitted_at": "2026-02-05T13:41:43.707Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 70,
+    "fields": {
+      "user": 1,
+      "problem": 4,
+      "code": "// Write your code here\nn = int(input())\narr = list(map(int, input().split()))\nx = int(input())\n\nfor i in range(n):\n    if arr[i] == x:\n        print(i + 1)   # Γ¥î wrong indexing\n        exit()\n\nprint(-1)",
+      "language": "PY",
+      "verdict": "PENDING",
+      "execution_time": null,
+      "error_message": null,
+      "submitted_at": "2026-02-05T13:44:52.524Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 71,
+    "fields": {
+      "user": 1,
+      "problem": 4,
+      "code": "// Write your code here\nn = int(input())\narr = list(map(int, input().split()))\nx = int(input())\n\nfor i in range(n):\n    if arr[i] == x:\n        print(i + 1)   # Γ¥î wrong indexing\n        exit()\n\nprint(-1)",
+      "language": "PY",
+      "verdict": "PENDING",
+      "execution_time": null,
+      "error_message": null,
+      "submitted_at": "2026-02-05T13:45:12.373Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 72,
+    "fields": {
+      "user": 1,
+      "problem": 4,
+      "code": "n = int(input())\narr = list(map(int, input().split()))\nx = int(input())\n\nfor i in range(n):\n    if arr[i] == x:\n        print(i + 1)   # Γ¥î wrong indexing\n        exit()\n\nprint(-1)",
+      "language": "PY",
+      "verdict": "PENDING",
+      "execution_time": null,
+      "error_message": null,
+      "submitted_at": "2026-02-05T13:49:07.261Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 73,
+    "fields": {
+      "user": 1,
+      "problem": 4,
+      "code": "n = int(input())\narr = list(map(int, input().split()))\nx = int(input())\n\nfor i in range(n):\n    if arr[i] == x:\n        print(i + 1)   # Γ¥î wrong indexing\n        exit()\n\nprint(-1)",
+      "language": "PY",
+      "verdict": "WA",
+      "execution_time": null,
+      "error_message": null,
+      "submitted_at": "2026-02-05T13:51:22.992Z",
+      "failed_input": "5\r\n1 3 5 7 9\r\n7",
+      "failed_expected_output": "3",
+      "failed_user_output": "4"
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 74,
+    "fields": {
+      "user": 1,
+      "problem": 4,
+      "code": "n = int(input())\narr = list(map(int, input().split()))\nx = int(input())\n\nl, r = 0, n - 1\n\nwhile l <= r:\n    mid = (l + r) // 2\n\n    if arr[mid] == x:\n        print(mid)\n        exit()\n    elif arr[mid] < x:\n        l = mid + 1\n    else:\n        r = mid - 1\n\nprint(-1)",
+      "language": "PY",
+      "verdict": "AC",
+      "execution_time": 0.0732,
+      "error_message": null,
+      "submitted_at": "2026-02-05T13:51:51.249Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 75,
+    "fields": {
+      "user": 1,
+      "problem": 4,
+      "code": "n = int(input())\narr = list(map(int, input().split()))\nx = int(input())\n\nleft, right = 0, n - 1\n\nwhile left <= right:\n    mid = left + (right - left) // 2\n\n    if arr[mid] == x:\n        print(mid)\n        break\n    elif arr[mid] < x:\n        left = mid + 1\n    else:\n        right = mid - 1\nelse:\n    print(-1)",
+      "language": "PY",
+      "verdict": "AC",
+      "execution_time": 0.1157,
+      "error_message": null,
+      "submitted_at": "2026-02-28T10:08:31.633Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 76,
+    "fields": {
+      "user": 1,
+      "problem": 4,
+      "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n\n    vector<int> arr(n);\n    for (int i = 0; i < n; i++) {\n        cin >> arr[i];\n    }\n\n    int x;\n    cin >> x;\n\n    int left = 0, right = n - 1;\n\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n\n        if (arr[mid] == x) {\n            cout << mid;\n            return 0;\n        }\n        else if (arr[mid] < x) {\n            left = mid + 1;\n        }\n        else {\n            right = mid - 1;\n        }\n    }\n\n    cout << -1;\n    return 0;\n}",
+      "language": "CPP",
+      "verdict": "AC",
+      "execution_time": 0.5088,
+      "error_message": null,
+      "submitted_at": "2026-03-22T13:49:00.760Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 77,
+    "fields": {
+      "user": 1,
+      "problem": 4,
+      "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n\n    vector<int> arr(n);\n    for (int i = 0; i < n; i++) {\n        cin >> arr[i];\n    }\n\n    int x;\n    cin >> x;\n\n    int left = 0, right = n - 1;\n\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n\n        if (arr[mid] == x) {\n            cout << mid;\n            return 0;\n        }\n        else if (arr[mid] < x) {\n            left = mid + 1;\n        }\n        else {\n            right = mid - 1;\n        }\n    }\n\n    cout << -1;\n    return 0;\n}",
+      "language": "CPP",
+      "verdict": "AC",
+      "execution_time": 0.3725,
+      "error_message": null,
+      "submitted_at": "2026-03-22T14:26:17.699Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 78,
+    "fields": {
+      "user": 1,
+      "problem": 4,
+      "code": "// Write your code here\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n\n    vector<int> arr(n);\n    for (int i = 0; i < n; i++) {\n        cin >> arr[i];\n    }\n\n    int x;\n    cin >> x;\n\n    int left = 0, right = n - 1;\n\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n\n        if (arr[mid] == x) {\n            cout << mid;\n            return 0;\n        }\n        else if (arr[mid] < x) {\n            left = mid + 1;\n        }\n        else {\n            right = mid - 1;\n        }\n    }\n\n    cout << -1;\n    return 0;\n}",
+      "language": "CPP",
+      "verdict": "AC",
+      "execution_time": 0.4136,
+      "error_message": null,
+      "submitted_at": "2026-03-22T14:36:52.985Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 79,
+    "fields": {
+      "user": 1,
+      "problem": 4,
+      "code": "// Write your code here\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n\n    vector<int> arr(n);\n    for (int i = 0; i < n; i++) {\n        cin >> arr[i];\n    }\n\n    int x;\n    cin >> x;\n\n    int left = 0, right = n - 1;\n\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n\n        if (arr[mid] == x) {\n            cout << mid;\n            return 0;\n        }\n        else if (arr[mid] < x) {\n            left = mid + 1;\n        }\n        else {\n            right = mid - 1;\n        }\n    }\n\n    cout << -1;\n    return 0;\n}",
+      "language": "PY",
+      "verdict": "RE",
+      "execution_time": null,
+      "error_message": "File \"C:\\Users\\ayush\\AppData\\Local\\Temp\\tmpaj7t3w3n\\main.py\", line 1\r\n    // Write your code here\r\n    ^^\r\nSyntaxError: invalid syntax",
+      "submitted_at": "2026-03-22T14:42:38.707Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 80,
+    "fields": {
+      "user": 1,
+      "problem": 4,
+      "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n\n    vector<int> arr(n);\n    for (int i = 0; i < n; i++) {\n        cin >> arr[i];\n    }\n\n    int x;\n    cin >> x;\n\n    int left = 0, right = n - 1;\n\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n\n        if (arr[mid] == x) {\n            cout << mid;\n            return 0;\n        }\n        else if (arr[mid] < x) {\n            left = mid + 1;\n        }\n        else {\n            right = mid - 1;\n        }\n    }\n\n    cout << -1;\n    return 0;\n}",
+      "language": "PY",
+      "verdict": "RE",
+      "execution_time": null,
+      "error_message": "File \"C:\\Users\\ayush\\AppData\\Local\\Temp\\tmp9jn_lnwx\\main.py\", line 2\r\n    using namespace std;\r\n          ^^^^^^^^^\r\nSyntaxError: invalid syntax",
+      "submitted_at": "2026-03-22T14:43:13.309Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 81,
+    "fields": {
+      "user": 1,
+      "problem": 4,
+      "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n\n    vector<int> arr(n);\n    for (int i = 0; i < n; i++) {\n        cin >> arr[i];\n    }\n\n    int x;\n    cin >> x;\n\n    int left = 0, right = n - 1;\n\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n\n        if (arr[mid] == x) {\n            cout << mid;\n            return 0;\n        }\n        else if (arr[mid] < x) {\n            left = mid + 1;\n        }\n        else {\n            right = mid - 1;\n        }\n    }\n\n    cout << -1;\n    return 0;\n}",
+      "language": "PY",
+      "verdict": "RE",
+      "execution_time": null,
+      "error_message": "File \"C:\\Users\\ayush\\AppData\\Local\\Temp\\tmplankcuba\\main.py\", line 2\r\n    using namespace std;\r\n          ^^^^^^^^^\r\nSyntaxError: invalid syntax",
+      "submitted_at": "2026-03-22T14:43:14.214Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 82,
+    "fields": {
+      "user": 1,
+      "problem": 4,
+      "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n\n    vector<int> arr(n);\n    for (int i = 0; i < n; i++) {\n        cin >> arr[i];\n    }\n\n    int x;\n    cin >> x;\n\n    int left = 0, right = n - 1;\n\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n\n        if (arr[mid] == x) {\n            cout << mid;\n            return 0;\n        }\n        else if (arr[mid] < x) {\n            left = mid + 1;\n        }\n        else {\n            right = mid - 1;\n        }\n    }\n\n    cout << -1;\n    return 0;\n}",
+      "language": "CPP",
+      "verdict": "AC",
+      "execution_time": 0.3971,
+      "error_message": null,
+      "submitted_at": "2026-03-22T14:43:19.135Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 83,
+    "fields": {
+      "user": 5,
+      "problem": 4,
+      "code": "// Write your code here\nprint(1)",
+      "language": "PY",
+      "verdict": "RE",
+      "execution_time": null,
+      "error_message": "File \"C:\\Users\\ayush\\AppData\\Local\\Temp\\tmp56w7jiku\\main.py\", line 1\r\n    // Write your code here\r\n    ^^\r\nSyntaxError: invalid syntax",
+      "submitted_at": "2026-03-23T11:39:24.004Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 84,
+    "fields": {
+      "user": 5,
+      "problem": 6,
+      "code": "// Write your code here\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n\n    vector<int> nums(n);\n    for (int i = 0; i < n; i++) {\n        cin >> nums[i];\n    }\n\n    int target;\n    cin >> target;\n\n    unordered_map<int, int> mp;\n\n    for (int i = 0; i < n; i++) {\n        int complement = target - nums[i];\n\n        if (mp.find(complement) != mp.end()) {\n            cout << mp[complement] << \" \" << i;\n            return 0;\n        }\n\n        mp[nums[i]] = i;\n    }\n\n    cout << \"-1 -1\";  // if no solution found\n    return 0;\n}",
+      "language": "CPP",
+      "verdict": "AC",
+      "execution_time": 0.3839,
+      "error_message": null,
+      "submitted_at": "2026-03-23T13:03:03.559Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 85,
+    "fields": {
+      "user": 5,
+      "problem": 6,
+      "code": "// Write your code here\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n\n    vector<int> nums(n);\n    for (int i = 0; i < n; i++) {\n        cin >> nums[i];\n    }\n\n    int target;\n    cin >> target;\n\n    // WRONG CODE\nfor (int i = 0; i < n; i++) {\n    for (int j = i; j < n; j++) {   // Γ¥î should be i+1\n        if (nums[i] + nums[j] == target) {\n            cout << i << \" \" << j;\n            return 0;\n        }\n    }\n}\n}",
+      "language": "CPP",
+      "verdict": "WA",
+      "execution_time": null,
+      "error_message": null,
+      "submitted_at": "2026-03-23T13:04:27.315Z",
+      "failed_input": "3\r\n3 2 4\r\n6",
+      "failed_expected_output": "1 2",
+      "failed_user_output": "0 0"
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 86,
+    "fields": {
+      "user": 5,
+      "problem": 7,
+      "code": "// Write your code here\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n\n    vector<int> stones(n);\n    for (int i = 0; i < n; i++) cin >> stones[i];\n\n    unordered_map<int, unordered_set<int>> dp;\n\n    dp[0].insert(0); // starting point\n\n    for (int i = 0; i < n; i++) {\n        int stone = stones[i];\n\n        for (int jump : dp[stone]) {\n\n            for (int nextJump = jump - 1; nextJump <= jump + 1; nextJump++) {\n\n                if (nextJump > 0) {\n                    int nextStone = stone + nextJump;\n\n                    if (dp.find(nextStone) != dp.end()) {\n                        dp[nextStone].insert(nextJump);\n                    }\n                }\n            }\n        }\n    }\n\n    if (!dp[stones[n - 1]].empty())\n        cout << \"true\";\n    else\n        cout << \"false\";\n\n    return 0;\n}",
+      "language": "CPP",
+      "verdict": "WA",
+      "execution_time": null,
+      "error_message": null,
+      "submitted_at": "2026-03-23T13:11:15.456Z",
+      "failed_input": "8\r\n0 1 3 5 6 8 12 17",
+      "failed_expected_output": "true",
+      "failed_user_output": "false"
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 87,
+    "fields": {
+      "user": 5,
+      "problem": 7,
+      "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nbool solve(int n, vector<int>& stones, vector<vector<int>>& dp, int ind, int k) {\n    if (ind == n - 1) return true;\n    if (k == 0) return false;\n\n    if (dp[ind][k] != -1) return dp[ind][k];\n\n    bool ans = false;\n\n    for (int i = -1; i <= 1; i++) {\n        int nextJump = k + i;\n        if (nextJump <= 0) continue;\n\n        int target = stones[ind] + nextJump;\n\n        int l = ind + 1, r = n - 1;\n        while (l <= r) {\n            int mid = (l + r) / 2;\n\n            if (stones[mid] == target) {\n                ans = ans || solve(n, stones, dp, mid, nextJump);\n                break;\n            }\n            else if (stones[mid] < target) {\n                l = mid + 1;\n            }\n            else {\n                r = mid - 1;\n            }\n        }\n    }\n\n    return dp[ind][k] = ans;\n}\n\nint main() {\n    int n;\n    cin >> n;\n\n    vector<int> stones(n);\n    for (int i = 0; i < n; i++) {\n        cin >> stones[i];\n    }\n\n    if (n < 2 || stones[1] - stones[0] > 1) {\n        cout << \"false\";\n        return 0;\n    }\n\n    vector<vector<int>> dp(n, vector<int>(n, -1));\n\n    bool result = solve(n, stones, dp, 1, 1);\n\n    if (result) cout << \"true\";\n    else cout << \"false\";\n\n    return 0;\n}",
+      "language": "CPP",
+      "verdict": "AC",
+      "execution_time": 0.3211,
+      "error_message": null,
+      "submitted_at": "2026-03-23T13:14:14.002Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 88,
+    "fields": {
+      "user": 5,
+      "problem": 5,
+      "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint binarySearch(vector<int>& nums, int target) {\n    int left = 0, right = nums.size() - 1;\n\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n\n        if (nums[mid] == target)\n            return mid;\n        else if (nums[mid] < target)\n            left = mid + 1;\n        else\n            right = mid - 1;\n    }\n\n    return -1;\n}\n\nint main() {\n    int n, target;\n\n    cout << \"Enter number of elements: \";\n    cin >> n;\n\n    vector<int> nums(n);\n    cout << \"Enter sorted array elements:\\n\";\n    for (int i = 0; i < n; i++) {\n        cin >> nums[i];\n    }\n\n    cout << \"Enter target: \";\n    cin >> target;\n\n    int result = binarySearch(nums, target);\n\n    if (result != -1)\n        cout << \"Target found at index: \" << result << endl;\n    else\n        cout << \"Target not found\\n\";\n\n    return 0;\n}",
+      "language": "CPP",
+      "verdict": "WA",
+      "execution_time": null,
+      "error_message": null,
+      "submitted_at": "2026-03-24T10:23:30.818Z",
+      "failed_input": "4\r\n1 2 3 1",
+      "failed_expected_output": "2",
+      "failed_user_output": "Enter number of elements: Enter sorted array elements:\r\nEnter target: Target not found"
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 89,
+    "fields": {
+      "user": 5,
+      "problem": 5,
+      "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint binarySearch(vector<int>& nums, int target) {\n    int left = 0, right = nums.size() - 1;\n\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n\n        if (nums[mid] == target)\n            return mid;\n        else if (nums[mid] < target)\n            left = mid + 1;\n        else\n            right = mid - 1;\n    }\n\n    return -1;\n}\n\nint main() {\n    int n, target;\n\n    cin >> n;\n\n    vector<int> nums(n);\n    for (int i = 0; i < n; i++) {\n        cin >> nums[i];\n    }\n\n    cin >> target;\n\n    int result = binarySearch(nums, target);\n\n    if (result != -1)\n        cout << result << endl;\n    else\n        cout << -1 << endl;\n\n    return 0;\n}",
+      "language": "CPP",
+      "verdict": "WA",
+      "execution_time": null,
+      "error_message": null,
+      "submitted_at": "2026-03-24T10:24:27.754Z",
+      "failed_input": "4\r\n1 2 3 1",
+      "failed_expected_output": "2",
+      "failed_user_output": "-1"
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 90,
+    "fields": {
+      "user": 5,
+      "problem": 7,
+      "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nbool solve(int n, vector<int>& stones, vector<vector<int>>& dp, int ind, int k) {\n    if (ind == n - 1) return true;\n    if (k == 0) return false;\n\n    if (dp[ind][k] != -1) return dp[ind][k];\n\n    bool ans = false;\n\n    for (int i = -1; i <= 1; i++) {\n        int nextJump = k + i;\n        if (nextJump <= 0) continue;\n\n        int target = stones[ind] + nextJump;\n\n        int l = ind + 1, r = n - 1;\n        while (l <= r) {\n            int mid = (l + r) / 2;\n\n            if (stones[mid] == target) {\n                ans = ans || solve(n, stones, dp, mid, nextJump);\n                break;\n            }\n            else if (stones[mid] < target) {\n                l = mid + 1;\n            }\n            else {\n                r = mid - 1;\n            }\n        }\n    }\n\n    return dp[ind][k] = ans;\n}\n\nint main() {\n    int n;\n    cin >> n;\n\n    vector<int> stones(n);\n    for (int i = 0; i < n; i++) {\n        cin >> stones[i];\n    }\n\n    if (n < 2 || stones[1] - stones[0] > 1) {\n        cout << \"false\";\n        return 0;\n    }\n\n    vector<vector<int>> dp(n, vector<int>(n, -1));\n\n    bool result = solve(n, stones, dp, 1, 1);\n\n    if (result) cout << \"true\";\n    else cout << \"false\";\n\n    return 0;\n}",
+      "language": "CPP",
+      "verdict": "AC",
+      "execution_time": 0.3298,
+      "error_message": null,
+      "submitted_at": "2026-03-24T10:26:27.360Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 91,
+    "fields": {
+      "user": 5,
+      "problem": 6,
+      "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nbool solve(int n, vector<int>& stones, vector<vector<int>>& dp, int ind, int k) {\n    if (ind == n - 1) return true;\n    if (k == 0) return false;\n\n    if (dp[ind][k] != -1) return dp[ind][k];\n\n    bool ans = false;\n\n    for (int i = -1; i <= 1; i++) {\n        int nextJump = k + i;\n        if (nextJump <= 0) continue;\n\n        int target = stones[ind] + nextJump;\n\n        int l = ind + 1, r = n - 1;\n        while (l <= r) {\n            int mid = (l + r) / 2;\n\n            if (stones[mid] == target) {\n                ans = ans || solve(n, stones, dp, mid, nextJump);\n                break;\n            }\n            else if (stones[mid] < target) {\n                l = mid + 1;\n            }\n            else {\n                r = mid - 1;\n            }\n        }\n    }\n\n    return dp[ind][k] = ans;\n}\n\nint main() {\n    int n;\n    cin >> n;\n\n    vector<int> stones(n);\n    for (int i = 0; i < n; i++) {\n        cin >> stones[i];\n    }\n\n    if (n < 2 || stones[1] - stones[0] > 1) {\n        cout << \"false\";\n        return 0;\n    }\n\n    vector<vector<int>> dp(n, vector<int>(n, -1));\n\n    bool result = solve(n, stones, dp, 1, 1);\n\n    if (result) cout << \"true\";\n    else cout << \"false\";\n\n    return 0;\n}",
+      "language": "CPP",
+      "verdict": "WA",
+      "execution_time": null,
+      "error_message": null,
+      "submitted_at": "2026-03-24T10:27:24.775Z",
+      "failed_input": "4\r\n2 7 11 15\r\n9",
+      "failed_expected_output": "0 1",
+      "failed_user_output": "false"
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 92,
+    "fields": {
+      "user": 5,
+      "problem": 6,
+      "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n\n    vector<int> nums(n);\n    for (int i = 0; i < n; i++) {\n        cin >> nums[i];\n    }\n\n    int target;\n    cin >> target;\n\n    unordered_map<int, int> mp;\n\n    for (int i = 0; i < n; i++) {\n        int complement = target - nums[i];\n\n        if (mp.find(complement) != mp.end()) {\n            cout << mp[complement] << \" \" << i;\n            return 0;\n        }\n\n        mp[nums[i]] = i;\n    }\n\n    cout << \"-1 -1\";  // if no solution found\n    return 0;\n}",
+      "language": "CPP",
+      "verdict": "AC",
+      "execution_time": 0.2981,
+      "error_message": null,
+      "submitted_at": "2026-03-24T10:27:42.947Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  },
+  {
+    "model": "judge.submission",
+    "pk": 93,
+    "fields": {
+      "user": 5,
+      "problem": 7,
+      "code": "#include <bits/stdc++.h>\nusing namespace std;\n\nbool solve(int n, vector<int>& stones, vector<vector<int>>& dp, int ind, int k) {\n    if (ind == n - 1) return true;\n    if (k == 0) return false;\n\n    if (dp[ind][k] != -1) return dp[ind][k];\n\n    bool ans = false;\n\n    for (int i = -1; i <= 1; i++) {\n        int nextJump = k + i;\n        if (nextJump <= 0) continue;\n\n        int target = stones[ind] + nextJump;\n\n        int l = ind + 1, r = n - 1;\n        while (l <= r) {\n            int mid = (l + r) / 2;\n\n            if (stones[mid] == target) {\n                ans = ans || solve(n, stones, dp, mid, nextJump);\n                break;\n            }\n            else if (stones[mid] < target) {\n                l = mid + 1;\n            }\n            else {\n                r = mid - 1;\n            }\n        }\n    }\n\n    return dp[ind][k] = ans;\n}\n\nint main() {\n    int n;\n    cin >> n;\n\n    vector<int> stones(n);\n    for (int i = 0; i < n; i++) {\n        cin >> stones[i];\n    }\n\n    if (n < 2 || stones[1] - stones[0] > 1) {\n        cout << \"false\";\n        return 0;\n    }\n\n    vector<vector<int>> dp(n, vector<int>(n, -1));\n\n    bool result = solve(n, stones, dp, 1, 1);\n\n    if (result) cout << \"true\";\n    else cout << \"false\";\n\n    return 0;\n}",
+      "language": "CPP",
+      "verdict": "AC",
+      "execution_time": 0.2958,
+      "error_message": null,
+      "submitted_at": "2026-03-24T14:24:02.764Z",
+      "failed_input": null,
+      "failed_expected_output": null,
+      "failed_user_output": null
+    }
+  }
+]
