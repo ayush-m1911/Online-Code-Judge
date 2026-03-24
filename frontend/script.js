@@ -2,7 +2,7 @@
    CodeJudge – script.js
    ========================================================= */
 
-const API_BASE = "http://localhost:8000/api";
+const API_BASE = "https://online-code-judge.onrender.com/api";
 let editor = null;
 let consoleOpen = true;
 let problemTestCases = [];   // store loaded test cases
