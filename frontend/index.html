@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,85 +8,93 @@
   <meta name="description" content="Browse and solve competitive programming problems on CodeJudge.">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body data-page="index">
 
-<!-- ── Navbar ── -->
-<header class="header">
-  <div class="header-brand">
-    <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="28" height="28" rx="8" fill="url(#grad)"/>
-      <path d="M8 10l4 4-4 4M14 18h6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <defs>
-        <linearGradient id="grad" x1="0" y1="0" x2="28" y2="28">
-          <stop offset="0%" stop-color="#6366f1"/>
-          <stop offset="100%" stop-color="#4f46e5"/>
-        </linearGradient>
-      </defs>
-    </svg>
-    CodeJudge
-  </div>
-
-  <nav class="header-nav">
-    <a href="submissions.html" class="btn btn-secondary" id="nav-submissions">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 4h10M3 8h7M3 12h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-      Submissions
-    </a>
-    <button class="btn-ghost btn" onclick="logout()" id="btn-logout">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M10 2h3a1 1 0 011 1v10a1 1 0 01-1 1h-3M7 11l3-3-3-3M10 8H2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Logout
-    </button>
-  </nav>
-</header>
-
-<!-- ── Content ── -->
-<main class="page-problem-list">
-
-  <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:24px;">
-    <div>
-      <h1 class="gradient-text" style="margin-bottom:4px;">Problems</h1>
-      <p style="margin:0;">Pick a challenge and start coding</p>
+  <!-- ── Navbar ── -->
+  <header class="header">
+    <div class="header-brand">
+      <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="28" height="28" rx="8" fill="url(#grad)" />
+        <path d="M8 10l4 4-4 4M14 18h6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <defs>
+          <linearGradient id="grad" x1="0" y1="0" x2="28" y2="28">
+            <stop offset="0%" stop-color="#6366f1" />
+            <stop offset="100%" stop-color="#4f46e5" />
+          </linearGradient>
+        </defs>
+      </svg>
+      CodeJudge
     </div>
-    <div id="solved-badge" style="display:none; background:rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.25); border-radius:12px; padding:10px 18px; text-align:center;">
-      <div style="font-size:1.4rem; font-weight:800; color:#22c55e;" id="solved-count">0</div>
-      <div style="font-size:0.72rem; color:#94a3b8; text-transform:uppercase; letter-spacing:0.05em;">Solved</div>
+
+    <nav class="header-nav">
+      <a href="submissions.html" class="btn btn-secondary" id="nav-submissions">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+          <path d="M3 4h10M3 8h7M3 12h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        </svg>
+        Submissions
+      </a>
+      <button class="btn-ghost btn" onclick="logout()" id="btn-logout">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+          <path d="M10 2h3a1 1 0 011 1v10a1 1 0 01-1 1h-3M7 11l3-3-3-3M10 8H2" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        Logout
+      </button>
+    </nav>
+  </header>
+
+  <!-- ── Content ── -->
+  <main class="page-problem-list">
+
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:24px;">
+      <div>
+        <h1 class="gradient-text" style="margin-bottom:4px;">Problems</h1>
+        <p style="margin:0;">Pick a challenge and start coding</p>
+      </div>
+      <div id="solved-badge"
+        style="display:none; background:rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.25); border-radius:12px; padding:10px 18px; text-align:center;">
+        <div style="font-size:1.4rem; font-weight:800; color:#22c55e;" id="solved-count">0</div>
+        <div style="font-size:0.72rem; color:#94a3b8; text-transform:uppercase; letter-spacing:0.05em;">Solved</div>
+      </div>
     </div>
-  </div>
 
-  <!-- Filters -->
-  <div class="filters">
-    <input type="text" id="search" placeholder="🔍  Search problems…" style="flex:1; min-width:180px;">
-    <select id="difficulty">
-      <option value="">All Difficulties</option>
-      <option value="Easy">Easy</option>
-      <option value="Medium">Medium</option>
-      <option value="Hard">Hard</option>
-    </select>
-    <select id="topic">
-      <option value="">All Topics</option>
-      <option value="Binary Search">Binary Search</option>
-      <option value="Dynamic Programming">DP</option>
-      <option value="Array">Array</option>
-      <option value="Graph">Graph</option>
-    </select>
-    <button class="filter-btn" onclick="loadProblems()" id="apply-filter-btn">Apply</button>
-  </div>
+    <!-- Filters -->
+    <div class="filters">
+      <input type="text" id="search" placeholder="🔍  Search problems…" style="flex:1; min-width:180px;">
+      <select id="difficulty">
+        <option value="">All Difficulties</option>
+        <option value="Easy">Easy</option>
+        <option value="Medium">Medium</option>
+        <option value="Hard">Hard</option>
+      </select>
+      <select id="topic">
+        <option value="">All Topics</option>
+        <option value="Binary Search">Binary Search</option>
+        <option value="Dynamic Programming">DP</option>
+        <option value="Array">Array</option>
+        <option value="String & Hash Table">String & Hash Table</option>
+      </select>
+      <button class="filter-btn" onclick="loadProblems()" id="apply-filter-btn">Apply</button>
+    </div>
 
-  <!-- Problem List -->
-  <div id="problem-list"></div>
+    <!-- Problem List -->
+    <div id="problem-list"></div>
 
-  <!-- Pagination -->
-  <div class="pagination" id="pagination"></div>
+    <!-- Pagination -->
+    <div class="pagination" id="pagination"></div>
 
-</main>
+  </main>
 
-<!-- Toast container -->
-<div id="toast-container"></div>
+  <!-- Toast container -->
+  <div id="toast-container"></div>
 
-<script src="script.js"></script>
-<script>
-  document.getElementById('search').addEventListener('keydown', e => {
-    if (e.key === 'Enter') loadProblems();
-  });
-</script>
+  <script src="script.js"></script>
+  <script>
+    document.getElementById('search').addEventListener('keydown', e => {
+      if (e.key === 'Enter') loadProblems();
+    });
+  </script>
 </body>
+
 </html>
