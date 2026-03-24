@@ -1,24 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Signup</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeJudge – Sign Up</title>
+  <meta name="description" content="Create your CodeJudge account and start competing.">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="auth-page">
 
-<div class="auth-container">
-    <h2> Sign Up</h2>
+<div class="auth-container fade-in">
 
-    <input type="text" id="username" placeholder="Username">
-    <input type="password" id="password" placeholder="Password">
+  <!-- Logo -->
+  <div class="auth-logo">
+    <svg width="36" height="36" viewBox="0 0 28 28" fill="none">
+      <rect width="28" height="28" rx="8" fill="url(#gradS)"/>
+      <path d="M8 10l4 4-4 4M14 18h6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <defs>
+        <linearGradient id="gradS" x1="0" y1="0" x2="28" y2="28">
+          <stop offset="0%" stop-color="#6366f1"/>
+          <stop offset="100%" stop-color="#4f46e5"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <span class="auth-logo-text">CodeJudge</span>
+  </div>
 
-    <button onclick="signupUser()">Sign Up</button>
+  <h2>Create account</h2>
+  <p class="auth-subtitle">Join thousands of competitive programmers</p>
 
-    <a href="login.html">Already have an account? Login</a>
+  <!-- Username -->
+  <div class="form-group">
+    <label for="username">Username</label>
+    <span class="form-icon">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="3" stroke="#475569" stroke-width="1.5"/><path d="M2 14c0-3.314 2.686-5 6-5s6 1.686 6 5" stroke="#475569" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </span>
+    <input type="text" id="username" placeholder="Choose a username" autocomplete="username">
+  </div>
 
-    <p id="msg"></p>
+  <!-- Password -->
+  <div class="form-group">
+    <label for="password">Password</label>
+    <span class="form-icon">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="3" y="7" width="10" height="8" rx="1.5" stroke="#475569" stroke-width="1.5"/><path d="M5 7V5a3 3 0 016 0v2" stroke="#475569" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </span>
+    <input type="password" id="password" placeholder="Create a strong password" autocomplete="new-password"
+           onkeydown="if(event.key==='Enter') signupUser()">
+  </div>
+
+  <button id="signup-btn" onclick="signupUser()">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    Create Account
+  </button>
+
+  <p id="msg"></p>
+
+  <a href="login.html">Already have an account? <span>Sign in →</span></a>
 </div>
 
+<div id="toast-container"></div>
 <script src="script.js"></script>
 </body>
 </html>

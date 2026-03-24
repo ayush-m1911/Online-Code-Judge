@@ -1,46 +1,652 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Problem</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeJudge – Problem</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/monaco-editor@0.44.0/min/vs/loader.js"></script>
 
-    <link rel="stylesheet" href="style.css">
-    <script src="https://unpkg.com/monaco-editor@0.44.0/min/vs/loader.js"></script>
+  <style>
+    /* ── Problem page reset so body fills viewport ── */
+    html, body { height: 100%; overflow: hidden; }
+
+    /* ══ TOP NAVBAR ══ */
+    .pnav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+      padding: 0 16px;
+      background: rgba(9,11,17,0.96);
+      border-bottom: 1px solid rgba(99,102,241,0.15);
+      backdrop-filter: blur(12px);
+      position: sticky; top: 0; z-index: 200;
+      flex-shrink: 0;
+    }
+    .pnav-left  { display:flex; align-items:center; gap:12px; }
+    .pnav-right { display:flex; align-items:center; gap:8px;  }
+
+    .pnav-back {
+      display: flex; align-items: center; justify-content: center;
+      width: 30px; height: 30px;
+      border-radius: 7px;
+      background: rgba(99,102,241,0.1);
+      color: #94a3b8;
+      transition: all 0.15s;
+      text-decoration: none;
+    }
+    .pnav-back:hover { background: rgba(99,102,241,0.22); color: #a5b4fc; }
+
+    .pnav-brand {
+      display: flex; align-items: center; gap: 8px;
+      font-weight: 800; font-size: 1rem;
+      background: linear-gradient(135deg,#a5b4fc,#6366f1);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    #header-title {
+      font-size: 0.9rem; font-weight: 600; color: #cbd5e1;
+      max-width: 280px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+
+    .pnav-divider { width: 1px; height: 22px; background: rgba(255,255,255,0.08); margin: 0 4px; }
+
+    /* Language selector */
+    .lang-pill {
+      display: flex; align-items: center; gap: 6px;
+      background: rgba(30,41,59,0.9);
+      border: 1px solid rgba(99,102,241,0.2);
+      border-radius: 8px;
+      padding: 5px 10px;
+    }
+    .lang-pill select {
+      background: transparent; border: none; outline: none;
+      color: #cbd5e1; font-size: 0.82rem; font-family: 'Inter',sans-serif;
+      cursor: pointer; padding-right: 4px; width: auto;
+      box-shadow: none;
+    }
+    .lang-pill select:focus { box-shadow: none; }
+
+    /* Run / Submit buttons */
+    .pnav-run {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border-radius: 8px; border: none; cursor: pointer;
+      font-size: 0.82rem; font-weight: 600; font-family: 'Inter',sans-serif;
+      background: rgba(99,102,241,0.15);
+      border: 1px solid rgba(99,102,241,0.3);
+      color: #a5b4fc;
+      transition: all 0.18s;
+    }
+    .pnav-run:hover { background: rgba(99,102,241,0.28); }
+    .pnav-run:active { transform: scale(0.96); }
+
+    .pnav-submit {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 16px; border-radius: 8px; border: none; cursor: pointer;
+      font-size: 0.82rem; font-weight: 700; font-family: 'Inter',sans-serif;
+      background: linear-gradient(135deg,#16a34a,#15803d);
+      color: #fff;
+      box-shadow: 0 3px 12px rgba(22,163,74,0.35);
+      transition: all 0.18s;
+    }
+    .pnav-submit:hover { box-shadow: 0 4px 20px rgba(22,163,74,0.5); transform: translateY(-1px); }
+    .pnav-submit:active { transform: scale(0.97); }
+    .pnav-submit:disabled, .pnav-run:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+
+    /* ══ WORKSPACE (flex row, fills remaining height) ══ */
+    .workspace {
+      display: flex;
+      height: calc(100vh - 52px);
+      overflow: hidden;
+    }
+
+    /* ══ LEFT PANEL ══ */
+    .ws-left {
+      width: 45%;
+      min-width: 300px;
+      max-width: 65%;
+      display: flex;
+      flex-direction: column;
+      background: #0d1117;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      overflow: hidden;
+    }
+
+    /* Tabs row */
+    .ws-tabs {
+      display: flex;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(9,11,17,0.8);
+      flex-shrink: 0;
+      padding: 0 16px;
+    }
+    .ws-tab {
+      padding: 11px 16px;
+      background: transparent; border: none;
+      color: #64748b; font-size: 0.83rem; font-weight: 600;
+      font-family: 'Inter',sans-serif;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.15s;
+    }
+    .ws-tab:hover  { color: #94a3b8; }
+    .ws-tab.active { color: #a5b4fc; border-bottom-color: #6366f1; }
+
+    /* Tab body */
+    .ws-tab-body {
+      display: none;
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 22px;
+    }
+    .ws-tab-body.active { display: block; }
+
+    /* Problem header */
+    .prob-title {
+      font-size: 1.15rem; font-weight: 700; color: #f1f5f9;
+      margin-bottom: 10px; line-height: 1.4;
+    }
+    .prob-desc {
+      font-size: 0.88rem; color: #94a3b8;
+      line-height: 1.75; white-space: pre-wrap;
+      margin: 14px 0 20px;
+    }
+
+    .section-label {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 0.73rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: #6366f1; margin-bottom: 10px; margin-top: 22px;
+    }
+    .section-label svg { flex-shrink: 0; }
+
+    /* IO blocks */
+    .io-block {
+      background: #161b22;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-left: 3px solid #6366f1;
+      border-radius: 7px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+    }
+    .io-block-label {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.05em; color: #6366f1; margin-bottom: 6px;
+    }
+    .io-block.output-block { border-left-color: #22c55e; }
+    .io-block.output-block .io-block-label { color: #22c55e; }
+    .io-block pre {
+      margin: 0; font-family: 'Fira Code',monospace; font-size: 0.83rem;
+      color: #e2e8f0; white-space: pre-wrap; word-break: break-all;
+    }
+
+    /* Test Cases tab */
+    .tc-toolbar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .tc-toolbar-label { font-weight: 700; color: #cbd5e1; font-size: 0.9rem; }
+    .tc-add-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 5px 12px; border-radius: 7px; border: none; cursor: pointer;
+      font-size: 0.78rem; font-weight: 600; font-family: 'Inter',sans-serif;
+      background: rgba(99,102,241,0.12);
+      border: 1px solid rgba(99,102,241,0.25);
+      color: #a5b4fc;
+      transition: all 0.15s;
+    }
+    .tc-add-btn:hover { background: rgba(99,102,241,0.22); }
+
+    /* Individual test case card */
+    .tc-card {
+      background: #161b22;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 9px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      transition: border-color 0.2s;
+    }
+    .tc-card:hover { border-color: rgba(99,102,241,0.25); }
+
+    .tc-card-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .tc-card-label { font-size: 0.78rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; }
+    .tc-run-single {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 3px 10px; border-radius: 6px; border: none; cursor: pointer;
+      font-size: 0.73rem; font-weight: 600; font-family: 'Inter',sans-serif;
+      background: rgba(99,102,241,0.1); color: #a5b4fc;
+      border: 1px solid rgba(99,102,241,0.2);
+      transition: all 0.15s;
+    }
+    .tc-run-single:hover { background: rgba(99,102,241,0.22); }
+
+    .tc-result-row {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.75rem; font-weight: 700;
+      margin-top: 8px; padding: 5px 10px;
+      border-radius: 6px;
+    }
+    .tc-result-row.pass { background: rgba(34,197,94,0.1); color: #22c55e; }
+    .tc-result-row.fail { background: rgba(239,68,68,0.1); color: #ef4444; }
+
+    /* Custom input form */
+    .tc-custom-form {
+      background: #161b22;
+      border: 1px solid rgba(99,102,241,0.2);
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 14px;
+    }
+    .tc-custom-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 12px;
+      font-size: 0.83rem; font-weight: 700; color: #94a3b8;
+    }
+    .tc-close-btn {
+      background: none; border: none; cursor: pointer;
+      color: #475569; font-size: 0.9rem; padding: 2px 6px;
+      border-radius: 4px; transition: color 0.15s;
+    }
+    .tc-close-btn:hover { color: #ef4444; }
+    .tc-label {
+      font-size: 0.73rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.05em; color: #64748b; display: block; margin-bottom: 6px;
+    }
+    .tc-textarea {
+      width: 100%; background: #0d1117;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 7px; color: #e2e8f0;
+      font-family: 'Fira Code',monospace; font-size: 0.83rem;
+      padding: 10px 12px; resize: vertical;
+      outline: none; transition: border-color 0.15s;
+    }
+    .tc-textarea:focus { border-color: #6366f1; }
+
+    .tc-run-custom-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 0; border-radius: 8px; border: none; cursor: pointer;
+      font-size: 0.83rem; font-weight: 600; font-family: 'Inter',sans-serif;
+      background: rgba(99,102,241,0.15); color: #a5b4fc;
+      border: 1px solid rgba(99,102,241,0.25);
+      width: 100%;
+      justify-content: center;
+      transition: all 0.15s;
+    }
+    .tc-run-custom-btn:hover { background: rgba(99,102,241,0.28); }
+
+    /* Submissions in left panel */
+    .sub-history-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px; border-radius: 8px;
+      background: rgba(99,102,241,0.1);
+      border: 1px solid rgba(99,102,241,0.2);
+      color: #a5b4fc; font-size: 0.83rem; font-weight: 600;
+      text-decoration: none; transition: all 0.15s;
+    }
+    .sub-history-link:hover { background: rgba(99,102,241,0.22); }
+
+    /* ══ DRAG DIVIDER ══ */
+    .ws-divider {
+      width: 5px; flex-shrink: 0;
+      background: rgba(99,102,241,0.08);
+      cursor: col-resize;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+      position: relative;
+    }
+    .ws-divider:hover, .ws-divider.dragging { background: rgba(99,102,241,0.35); }
+    .ws-divider-handle {
+      display: flex; flex-direction: column; gap: 3px;
+      pointer-events: none;
+    }
+    .ws-divider-handle span {
+      width: 3px; height: 3px; border-radius: 50%;
+      background: rgba(99,102,241,0.5);
+    }
+
+    /* ══ RIGHT PANEL ══ */
+    .ws-right {
+      flex: 1;
+      display: flex; flex-direction: column;
+      background: #0d1117;
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    /* Editor file bar */
+    .editor-bar {
+      display: flex; align-items: center; gap: 10px;
+      height: 38px; padding: 0 14px;
+      background: #161b22;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      flex-shrink: 0;
+    }
+    .editor-dots { display: flex; gap: 6px; }
+    .dot { width: 11px; height: 11px; border-radius: 50%; }
+    .dot-red    { background: #ff5f57; }
+    .dot-yellow { background: #febc2e; }
+    .dot-green  { background: #28c840; }
+    .editor-bar-filename {
+      font-size: 0.78rem; color: #64748b; font-family: 'Fira Code',monospace;
+    }
+    .bar-icon-btn {
+      background: none; border: none; cursor: pointer;
+      color: #475569; padding: 4px; border-radius: 5px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.15s;
+    }
+    .bar-icon-btn:hover { background: rgba(99,102,241,0.12); color: #a5b4fc; }
+
+    /* Monaco wrapper – flexes to fill remaining height */
+    .editor-wrap { flex: 1; min-height: 0; position: relative; }
+    .editor-wrap #editor { position: absolute; inset: 0; }
+
+    /* ══ CONSOLE / BOTTOM PANEL ══ */
+    .console-wrap {
+      flex-shrink: 0;
+      display: flex; flex-direction: column;
+      background: #0d1117;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      transition: height 0.25s ease;
+      height: 220px;
+    }
+    .console-wrap.collapsed { height: 38px; }
+
+    .console-topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 38px; padding: 0 14px; flex-shrink: 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      cursor: pointer; user-select: none;
+    }
+    .console-tabs { display: flex; gap: 2px; }
+    .console-tab {
+      padding: 5px 12px; border-radius: 6px; border: none; cursor: pointer;
+      font-size: 0.77rem; font-weight: 600; font-family: 'Inter',sans-serif;
+      background: none; color: #475569;
+      transition: all 0.15s;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .console-tab:hover  { color: #94a3b8; background: rgba(255,255,255,0.04); }
+    .console-tab.active { color: #a5b4fc; background: rgba(99,102,241,0.1); }
+
+    .console-status-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #334155; transition: all 0.2s;
+    }
+    .console-status-dot.green  { background: #22c55e; box-shadow: 0 0 6px rgba(34,197,94,0.5); }
+    .console-status-dot.red    { background: #ef4444; box-shadow: 0 0 6px rgba(239,68,68,0.5); }
+    .console-status-dot.yellow { background: #f59e0b; box-shadow: 0 0 6px rgba(245,158,11,0.5); }
+    .console-status-label { font-size: 0.75rem; color: #475569; }
+
+    .tc-result-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 17px; height: 17px; border-radius: 50%;
+      font-size: 0.65rem; font-weight: 800;
+      background: rgba(239,68,68,0.2); color: #ef4444;
+    }
+    .tc-result-badge.all-pass { background: rgba(34,197,94,0.2); color: #22c55e; }
+
+    .console-area { flex: 1; min-height: 0; overflow: hidden; }
+    .cout-panel { display: none; height: 100%; overflow-y: auto; }
+    .cout-panel.active { display: block; }
+    .cout-pre {
+      margin: 0; padding: 12px 16px;
+      font-family: 'Fira Code',monospace; font-size: 0.82rem;
+      line-height: 1.65; color: #e2e8f0; white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .cout-pre.cout-err { color: #fca5a5; }
+
+    /* TC result rows in console */
+    .tc-console-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .tc-console-icon {
+      width: 20px; height: 20px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; font-weight: 800; flex-shrink: 0; margin-top: 1px;
+    }
+    .tc-console-icon.pass { background: rgba(34,197,94,0.15); color: #22c55e; }
+    .tc-console-icon.fail { background: rgba(239,68,68,0.15); color: #ef4444; }
+    .tc-console-body { flex: 1; min-width: 0; }
+    .tc-console-title { font-size: 0.78rem; font-weight: 700; color: #cbd5e1; margin-bottom: 4px; }
+    .tc-console-detail { font-size: 0.75rem; color: #64748b; font-family: 'Fira Code',monospace; }
+
+    /* Verdict result */
+    .result-verdict {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 5px 14px; border-radius: 99px;
+      font-size: 0.83rem; font-weight: 700;
+    }
+    .result-verdict.ac  { background: rgba(34,197,94,0.12);  color: #22c55e; border: 1px solid rgba(34,197,94,0.25); }
+    .result-verdict.wa  { background: rgba(239,68,68,0.12);  color: #ef4444; border: 1px solid rgba(239,68,68,0.25); }
+    .result-verdict.tle { background: rgba(245,158,11,0.12); color: #f59e0b; border: 1px solid rgba(245,158,11,0.25); }
+    .result-verdict.ce, .result-verdict.re { background: rgba(239,68,68,0.08); color: #fca5a5; border: 1px solid rgba(239,68,68,0.18); }
+
+    .verdict-wrap { padding: 12px 16px; }
+    .verdict-sub-info {
+      font-size: 0.82rem; color: #64748b; margin-top: 8px; font-family: 'Fira Code',monospace;
+    }
+  </style>
 </head>
 <body data-page="problem">
 
+<!-- ══════════════ NAVBAR ══════════════ -->
+<header class="pnav">
+  <div class="pnav-left">
+    <a href="index.html" class="pnav-back" title="Back to problems">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+    <div class="pnav-brand">
+      <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+        <rect width="28" height="28" rx="7" fill="url(#gN)"/>
+        <path d="M8 10l4 4-4 4M14 18h6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <defs>
+          <linearGradient id="gN" x1="0" y1="0" x2="28" y2="28">
+            <stop offset="0%" stop-color="#6366f1"/>
+            <stop offset="100%" stop-color="#4f46e5"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <span id="header-title">Loading…</span>
+    <span id="header-difficulty"></span>
+  </div>
 
-<div class="container">
-    <div class="left">
-        <h2 id="title"></h2>
-        <span id="difficultyBadge"></span>
-        <p id="description"></p>
-
-        <h4>Test Cases</h4>
-        <ul id="testcases"></ul>
+  <div class="pnav-right">
+    <!-- Language pill -->
+    <div class="lang-pill">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" style="color:#6366f1;flex-shrink:0;">
+        <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M8 2c0 3.5-2 6-4 6s4 2.5 4 6M2 8h12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      <select id="language">
+        <option value="PY">Python</option>
+        <option value="CPP">C++</option>
+        <option value="JAVA">Java</option>
+      </select>
     </div>
 
-    <div class="right">
-        <h3>Submit Code</h3>
+    <div class="pnav-divider"></div>
 
-        <label>Language:</label>
-        <select id="language">
-            <option value="PY">Python</option>
-            <option value="CPP">C++</option>
-            <option value="JAVA">Java</option>
-        </select>
+    <button class="pnav-run" onclick="runCode()" id="run-btn">
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M4 3l9 5-9 5V3z" fill="currentColor"/></svg>
+      Run
+    </button>
 
-        <div id="editor" style="height: 400px; width: 100%; border: 1px solid #ccc;"></div>
+    <button class="pnav-submit" onclick="submitCode()" id="submit-btn">
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Submit
+    </button>
+  </div>
+</header>
 
-        <button onclick="submitCode()">Submit</button>
+<!-- ══════════════ WORKSPACE ══════════════ -->
+<div class="workspace" id="workspace">
 
-        <h4 id="result"></h4>
+  <!-- ── LEFT: Problem + Test Cases ── -->
+  <div class="ws-left" id="ws-left">
+
+    <div class="ws-tabs">
+      <button class="ws-tab active" onclick="switchTab(this,'tab-desc')">Description</button>
+      <button class="ws-tab" onclick="switchTab(this,'tab-testcases')">Test Cases</button>
+      <button class="ws-tab" onclick="switchTab(this,'tab-submissions-local')">Submissions</button>
     </div>
-</div>
 
+    <!-- Description Tab -->
+    <div class="ws-tab-body active" id="tab-desc">
+      <h2 class="prob-title" id="title">Loading…</h2>
+      <div id="difficultyBadge" style="margin-bottom:4px;"></div>
+
+      <p id="description" class="prob-desc"></p>
+
+      <div class="section-label">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M2 8h8M2 12h10" stroke="#6366f1" stroke-width="1.8" stroke-linecap="round"/></svg>
+        Examples
+      </div>
+      <div id="descr-examples"><div class="spinner"></div></div>
+
+      <div class="section-label">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+          <rect x="3" y="2" width="10" height="12" rx="1.5" stroke="#f59e0b" stroke-width="1.5"/>
+          <path d="M6 6h4M6 9h3" stroke="#f59e0b" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+        Constraints
+      </div>
+      <div id="descr-constraints">
+        <div class="constraint-box">See problem description for constraints.</div>
+      </div>
+    </div>
+
+    <!-- Test Cases Tab -->
+    <div class="ws-tab-body" id="tab-testcases">
+      <div class="tc-toolbar">
+        <span class="tc-toolbar-label">Sample Test Cases</span>
+        <button class="tc-add-btn" onclick="addCustomTestCase()">
+          <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          Add Custom
+        </button>
+      </div>
+
+      <div id="tc-list">
+        <div class="spinner"></div>
+      </div>
+
+      <!-- Custom Test Case form -->
+      <div class="tc-custom-form" id="tc-custom-form" style="display:none;">
+        <div class="tc-custom-header">
+          <span>Custom Test Case</span>
+          <button class="tc-close-btn" onclick="closeCustomForm()">✕</button>
+        </div>
+        <label class="tc-label">Your Input</label>
+        <textarea id="tc-custom-input" class="tc-textarea" placeholder="Enter your test input here…" rows="5"></textarea>
+        <div style="margin-top:10px;">
+          <button class="tc-run-custom-btn" onclick="runWithCustom()">
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M4 3l9 5-9 5V3z" fill="currentColor"/></svg>
+            Run with this input
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submissions Tab -->
+    <div class="ws-tab-body" id="tab-submissions-local">
+      <div class="section-label">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M9 5H7a2 2 0 00-2 2v7a2 2 0 002 2h6a2 2 0 002-2V7a2 2 0 00-2-2h-2m0 0V3a2 2 0 00-4 0v2m0 0h4" stroke="#6366f1" stroke-width="1.5" stroke-linecap="round"/></svg>
+        My Submissions
+      </div>
+      <p style="font-size:0.84rem; color:#64748b; margin:0 0 18px;">Submit your code above to track your results.</p>
+      <a href="submissions.html" class="sub-history-link">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 4h10M3 8h7M3 12h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        View full history
+      </a>
+    </div>
+
+  </div>
+
+  <!-- ── DRAG DIVIDER ── -->
+  <div class="ws-divider" id="ws-divider">
+    <div class="ws-divider-handle">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <!-- ── RIGHT: Code Editor + Console ── -->
+  <div class="ws-right" id="ws-right">
+
+    <!-- File bar -->
+    <div class="editor-bar">
+      <div class="editor-dots">
+        <span class="dot dot-red"></span>
+        <span class="dot dot-yellow"></span>
+        <span class="dot dot-green"></span>
+      </div>
+      <span class="editor-bar-filename" id="editor-filename">solution.py</span>
+      <div style="margin-left:auto; display:flex; gap:4px;">
+        <button class="bar-icon-btn" onclick="copyCode()" title="Copy to clipboard">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><rect x="6" y="6" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M3 10H2a1 1 0 01-1-1V2a1 1 0 011-1h7a1 1 0 011 1v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <button class="bar-icon-btn" onclick="resetEditor()" title="Reset code">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M2 8a6 6 0 116 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M2 4v4h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Monaco Editor -->
+    <div class="editor-wrap">
+      <div id="editor"></div>
+    </div>
+
+    <!-- Console / Output -->
+    <div class="console-wrap" id="console-wrap">
+      <div class="console-topbar" onclick="toggleConsole()">
+        <div class="console-tabs" onclick="event.stopPropagation()">
+          <button class="console-tab active" onclick="switchConsoleTab(this,'cout-output')">Output</button>
+          <button class="console-tab" onclick="switchConsoleTab(this,'cout-errors')">Errors</button>
+          <button class="console-tab" onclick="switchConsoleTab(this,'cout-testcases')">
+            Test Results
+            <span class="tc-result-badge" id="tc-badge" style="display:none;"></span>
+          </button>
+        </div>
+        <div style="display:flex; align-items:center; gap:6px;">
+          <span class="console-status-dot" id="console-dot"></span>
+          <span class="console-status-label" id="console-label">Idle</span>
+          <button class="bar-icon-btn" title="Toggle console" onclick="event.stopPropagation(); toggleConsole()">
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none" id="console-chevron" style="transition:transform 0.25s;">
+              <path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="console-area" id="console-area">
+        <div class="cout-panel active" id="cout-output">
+          <pre class="cout-pre" id="output-content">Run your code to see stdout here.</pre>
+        </div>
+        <div class="cout-panel" id="cout-errors">
+          <pre class="cout-pre cout-err" id="errors-content">No errors.</pre>
+        </div>
+        <div class="cout-panel" id="cout-testcases">
+          <div id="tc-results-content">
+            <p style="color:#475569; font-size:0.84rem; padding:12px 16px;">Run or Submit your code to see test results here.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /ws-right -->
+
+</div><!-- /workspace -->
+
+<div id="toast-container"></div>
 <script src="script.js"></script>
-<script>
-    loadProblemDetail();
-</script>
-
 </body>
 </html>

@@ -1,25 +1,410 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Submission History</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeJudge – Submissions</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ── Page specific styles ── */
+    .sub-page { max-width: 960px; margin: 0 auto; padding: 36px 24px 60px; }
+
+    /* Hero header */
+    .sub-hero {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 28px; flex-wrap: wrap; gap: 20px;
+    }
+    .sub-hero-left h1 {
+      font-size: 1.65rem; font-weight: 800; margin-bottom: 4px;
+      background: linear-gradient(135deg,#a5b4fc,#6366f1);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .sub-hero-left p { font-size: 0.85rem; color: #475569; margin: 0; }
+
+    /* Stats row */
+    .sub-stats {
+      display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px;
+    }
+    .stat-card {
+      flex: 1; min-width: 130px;
+      background: rgba(30,41,59,0.6);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      padding: 16px 20px;
+      backdrop-filter: blur(8px);
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .stat-card-value {
+      font-size: 1.55rem; font-weight: 800; color: #f1f5f9; line-height: 1;
+    }
+    .stat-card-label {
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: #475569;
+    }
+    .stat-card.accent-green { border-top: 2px solid #22c55e; }
+    .stat-card.accent-red   { border-top: 2px solid #ef4444; }
+    .stat-card.accent-blue  { border-top: 2px solid #6366f1; }
+    .stat-card.accent-amber { border-top: 2px solid #f59e0b; }
+
+    /* Premium table */
+    .sub-table-wrap {
+      background: rgba(20,27,45,0.7);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .sub-table {
+      width: 100%; border-collapse: collapse;
+    }
+
+    .sub-table thead tr {
+      background: rgba(99,102,241,0.07);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .sub-table thead th {
+      padding: 12px 20px;
+      text-align: left;
+      font-size: 0.7rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.07em;
+      color: #475569;
+    }
+
+    .sub-table tbody tr {
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: background 0.15s;
+      cursor: default;
+    }
+    .sub-table tbody tr:last-child { border-bottom: none; }
+    .sub-table tbody tr:hover { background: rgba(99,102,241,0.05); }
+    .sub-table tbody tr.new-row {
+      animation: rowIn 0.35s ease forwards;
+      opacity: 0;
+    }
+    @keyframes rowIn {
+      from { opacity:0; transform:translateY(6px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    .sub-table td {
+      padding: 13px 20px; vertical-align: middle;
+    }
+
+    /* Problem name cell */
+    .prob-name {
+      font-weight: 600; color: #e2e8f0; font-size: 0.9rem;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .prob-id {
+      font-size: 0.72rem; color: #334155; font-family: 'Fira Code',monospace;
+      background: rgba(255,255,255,0.05); padding: 1px 7px; border-radius: 4px;
+    }
+
+    /* Verdict badges */
+    .vbadge {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 4px 12px; border-radius: 99px;
+      font-size: 0.73rem; font-weight: 800; letter-spacing: 0.02em;
+    }
+    .vbadge.AC  { background: rgba(34,197,94,0.12);  color: #22c55e; border: 1px solid rgba(34,197,94,0.25); }
+    .vbadge.WA  { background: rgba(239,68,68,0.12);  color: #ef4444; border: 1px solid rgba(239,68,68,0.25); }
+    .vbadge.TLE { background: rgba(245,158,11,0.12); color: #f59e0b; border: 1px solid rgba(245,158,11,0.25); }
+    .vbadge.CE  { background: rgba(168,85,247,0.12); color: #c084fc; border: 1px solid rgba(168,85,247,0.25); }
+    .vbadge.RE  { background: rgba(239,68,68,0.08);  color: #fca5a5; border: 1px solid rgba(239,68,68,0.15); }
+
+    /* Language badge */
+    .lbadge {
+      display: inline-block;
+      padding: 3px 11px; border-radius: 99px;
+      font-size: 0.72rem; font-family: 'Fira Code',monospace;
+      background: rgba(99,102,241,0.1);
+      border: 1px solid rgba(99,102,241,0.18);
+      color: #94a3b8;
+    }
+
+    /* Time cell */
+    .time-cell {
+      font-size: 0.78rem; color: #475569;
+      font-family: 'Fira Code',monospace;
+    }
+
+    /* Empty state */
+    .empty-wrap {
+      padding: 64px 24px;
+      text-align: center;
+    }
+    .empty-wrap svg { margin-bottom: 16px; opacity: 0.3; }
+    .empty-wrap h3  { color: #94a3b8; font-size: 1rem; margin-bottom: 8px; }
+    .empty-wrap p   { color: #475569; font-size: 0.85rem; margin-bottom: 24px; }
+    .empty-wrap a {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 10px 22px; border-radius: 10px;
+      background: linear-gradient(135deg,#6366f1,#4f46e5);
+      color: #fff; font-size: 0.85rem; font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(99,102,241,0.35);
+      transition: all 0.18s;
+    }
+    .empty-wrap a:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(99,102,241,0.5); }
+
+    /* Loading skeleton rows */
+    .skeleton-row td { padding: 13px 20px; }
+    .skeleton {
+      height: 12px; border-radius: 6px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+    }
+    @keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+
+    /* Filter toolbar */
+    .sub-toolbar {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap;
+    }
+    .sub-filter-btn {
+      padding: 6px 14px; border-radius: 8px; border: none; cursor: pointer;
+      font-size: 0.78rem; font-weight: 700; font-family: 'Inter',sans-serif;
+      background: rgba(30,41,59,0.8);
+      border: 1px solid rgba(255,255,255,0.07);
+      color: #64748b; transition: all 0.15s;
+    }
+    .sub-filter-btn:hover  { border-color: rgba(99,102,241,0.3); color: #94a3b8; }
+    .sub-filter-btn.active { background: rgba(99,102,241,0.15); border-color: rgba(99,102,241,0.4); color: #a5b4fc; }
+    .filter-label {
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: #334155; margin-right: 2px;
+    }
+  </style>
 </head>
 <body data-page="submissions">
 
-<h1>Your Submissions</h1>
+<!-- ── Navbar (matches all pages) ── -->
+<header class="header">
+  <div class="header-brand">
+    <svg viewBox="0 0 28 28" fill="none">
+      <rect width="28" height="28" rx="8" fill="url(#gradH)"/>
+      <path d="M8 10l4 4-4 4M14 18h6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <defs>
+        <linearGradient id="gradH" x1="0" y1="0" x2="28" y2="28">
+          <stop offset="0%" stop-color="#6366f1"/>
+          <stop offset="100%" stop-color="#4f46e5"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    CodeJudge
+  </div>
+  <nav class="header-nav">
+    <a href="index.html" class="btn btn-secondary">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+        <path d="M8 2L2 8l6 6M2 8h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Problems
+    </a>
+    <button class="btn-ghost btn" onclick="logout()">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+        <path d="M10 2h3a1 1 0 011 1v10a1 1 0 01-1 1h-3M7 11l3-3-3-3M10 8H2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Logout
+    </button>
+  </nav>
+</header>
 
-<table border="1" width="100%" cellpadding="10">
-    <thead>
+<!-- ── Page content ── -->
+<main class="sub-page">
+
+  <!-- Hero -->
+  <div class="sub-hero">
+    <div class="sub-hero-left">
+      <h1>Submission History</h1>
+      <p>All your code submissions in one place</p>
+    </div>
+    <a href="index.html" class="btn btn-primary" style="text-decoration:none;">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+        <path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      Solve a Problem
+    </a>
+  </div>
+
+  <!-- Stats cards -->
+  <div class="sub-stats" id="sub-stats" style="display:none;">
+    <div class="stat-card accent-blue">
+      <div class="stat-card-value" id="stat-total">0</div>
+      <div class="stat-card-label">Total Submissions</div>
+    </div>
+    <div class="stat-card accent-green">
+      <div class="stat-card-value" id="stat-ac">0</div>
+      <div class="stat-card-label">Accepted</div>
+    </div>
+    <div class="stat-card accent-red">
+      <div class="stat-card-value" id="stat-wa">0</div>
+      <div class="stat-card-label">Wrong Answer</div>
+    </div>
+    <div class="stat-card accent-amber">
+      <div class="stat-card-value" id="stat-tle">0</div>
+      <div class="stat-card-label">TLE / Other</div>
+    </div>
+  </div>
+
+  <!-- Filter row -->
+  <div class="sub-toolbar" id="sub-toolbar" style="display:none;">
+    <span class="filter-label">Filter:</span>
+    <button class="sub-filter-btn active" onclick="filterSubmissions(this,'all')">All</button>
+    <button class="sub-filter-btn" onclick="filterSubmissions(this,'AC')">Accepted</button>
+    <button class="sub-filter-btn" onclick="filterSubmissions(this,'WA')">Wrong Answer</button>
+    <button class="sub-filter-btn" onclick="filterSubmissions(this,'TLE')">TLE</button>
+    <button class="sub-filter-btn" onclick="filterSubmissions(this,'CE')">Compile Error</button>
+  </div>
+
+  <!-- Table -->
+  <div class="sub-table-wrap">
+    <table class="sub-table">
+      <thead>
         <tr>
-            <th>Problem</th>
-            <th>Verdict</th>
-            <th>Language</th>
-            <th>Time</th>
+          <th>Problem</th>
+          <th>Verdict</th>
+          <th>Language</th>
+          <th>Submitted At</th>
         </tr>
-    </thead>
-    <tbody id="submission-list"></tbody>
-</table>
+      </thead>
+      <tbody id="submission-list">
+        <!-- skeleton loading rows -->
+        <tr class="skeleton-row"><td><div class="skeleton" style="width:60%;"></div></td><td><div class="skeleton" style="width:80px;"></div></td><td><div class="skeleton" style="width:55px;"></div></td><td><div class="skeleton" style="width:140px;"></div></td></tr>
+        <tr class="skeleton-row"><td><div class="skeleton" style="width:75%;"></div></td><td><div class="skeleton" style="width:80px;"></div></td><td><div class="skeleton" style="width:55px;"></div></td><td><div class="skeleton" style="width:140px;"></div></td></tr>
+        <tr class="skeleton-row"><td><div class="skeleton" style="width:50%;"></div></td><td><div class="skeleton" style="width:80px;"></div></td><td><div class="skeleton" style="width:55px;"></div></td><td><div class="skeleton" style="width:140px;"></div></td></tr>
+      </tbody>
+    </table>
+  </div>
 
+</main>
+
+<div id="toast-container"></div>
 <script src="script.js"></script>
+
+<script>
+  /* ── Submissions-specific logic ── */
+  let allSubmissions = [];
+  let activeFilter   = "all";
+
+  // Override the generic loadSubmissions to also build stats + render nicer rows
+  document.addEventListener("DOMContentLoaded", () => {
+    // checkAuth already called by script.js DOMContentLoaded
+    fetchSubmissions();
+  });
+
+  function fetchSubmissions() {
+    fetch("http://localhost:8000/api/submissions/", {
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("access")}`
+      }
+    })
+    .then(r => {
+      if (r.status === 401) { window.location.href = "login.html"; return []; }
+      return r.json();
+    })
+    .then(data => {
+      allSubmissions = data || [];
+      buildStats(allSubmissions);
+      renderRows(allSubmissions);
+
+      if (allSubmissions.length > 0) {
+        document.getElementById("sub-stats").style.display   = "flex";
+        document.getElementById("sub-toolbar").style.display = "flex";
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      document.getElementById("submission-list").innerHTML =
+        `<tr><td colspan="4" style="padding:20px; color:#ef4444; text-align:center;">
+           Failed to load submissions. Is the server running?
+         </td></tr>`;
+    });
+  }
+
+  function buildStats(data) {
+    const ac  = data.filter(s => s.verdict === "AC").length;
+    const wa  = data.filter(s => s.verdict === "WA").length;
+    const tle = data.filter(s => !["AC","WA"].includes(s.verdict)).length;
+    document.getElementById("stat-total").textContent = data.length;
+    document.getElementById("stat-ac").textContent    = ac;
+    document.getElementById("stat-wa").textContent    = wa;
+    document.getElementById("stat-tle").textContent   = tle;
+  }
+
+  function filterSubmissions(btn, verdict) {
+    document.querySelectorAll(".sub-filter-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    activeFilter = verdict;
+    const filtered = verdict === "all" ? allSubmissions : allSubmissions.filter(s => s.verdict === verdict);
+    renderRows(filtered);
+  }
+
+  function renderRows(data) {
+    const tbody = document.getElementById("submission-list");
+    tbody.innerHTML = "";
+
+    if (!data || data.length === 0) {
+      tbody.innerHTML = `
+        <tr><td colspan="4">
+          <div class="empty-wrap">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" style="color:#6366f1;">
+              <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <h3>${activeFilter === "all" ? "No submissions yet" : `No ${activeFilter} submissions`}</h3>
+            <p>${activeFilter === "all" ? "Submit a solution to see your history here." : "Try a different filter."}</p>
+            ${activeFilter === "all" ? `<a href="index.html"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Browse Problems</a>` : ""}
+          </div>
+        </td></tr>`;
+      return;
+    }
+
+    const verdictLabel = { AC:"Accepted", WA:"Wrong Answer", TLE:"Time Limit", CE:"Compile Error", RE:"Runtime Error" };
+    const verdictIcon  = { AC:"✓", WA:"✕", TLE:"⟳", CE:"⚙", RE:"⚠" };
+    const langName     = { PY:"Python", CPP:"C++", JAVA:"Java" };
+
+    data.forEach((sub, i) => {
+      const tr = document.createElement("tr");
+      tr.className = "new-row";
+      tr.style.animationDelay = `${Math.min(i * 0.045, 0.5)}s`;
+
+      const date = new Date(sub.submitted_at);
+      const timeStr = date.toLocaleDateString("en-IN", { day:"2-digit", month:"short", year:"numeric" })
+                    + " · "
+                    + date.toLocaleTimeString("en-IN", { hour:"2-digit", minute:"2-digit", hour12:true });
+
+      tr.innerHTML = `
+        <td>
+          <div class="prob-name">
+            <span class="prob-id">#${sub.problem}</span>
+            <a href="problem.html?id=${sub.problem}" style="color:#e2e8f0; text-decoration:none; font-weight:600; transition:color 0.15s;"
+               onmouseover="this.style.color='#a5b4fc'" onmouseout="this.style.color='#e2e8f0'"
+               title="Go to problem">
+              ${escapeHtml(sub.problem_title || `Problem #${sub.problem}`)}
+              <svg width="11" height="11" viewBox="0 0 16 16" fill="none" style="opacity:0.4; margin-left:3px; vertical-align:middle;">
+                <path d="M6 3h7v7M13 3L3 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </td>
+        <td>
+          <span class="vbadge ${sub.verdict}">
+            ${verdictIcon[sub.verdict] || "•"} ${verdictLabel[sub.verdict] || sub.verdict}
+          </span>
+        </td>
+        <td><span class="lbadge">${langName[sub.language] || sub.language}</span></td>
+        <td class="time-cell">${timeStr}</td>`;
+
+      tbody.appendChild(tr);
+    });
+  }
+
+  function escapeHtml(s) {
+    if (!s) return "";
+    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  }
+</script>
 </body>
 </html>
