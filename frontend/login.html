@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,58 +8,69 @@
   <meta name="description" content="Sign in to your CodeJudge account and start solving problems.">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="auth-page">
 
-<div class="auth-container fade-in">
+  <div class="auth-container fade-in">
 
-  <!-- Logo -->
-  <div class="auth-logo">
-    <svg width="36" height="36" viewBox="0 0 28 28" fill="none">
-      <rect width="28" height="28" rx="8" fill="url(#grad2)"/>
-      <path d="M8 10l4 4-4 4M14 18h6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <defs>
-        <linearGradient id="grad2" x1="0" y1="0" x2="28" y2="28">
-          <stop offset="0%" stop-color="#6366f1"/>
-          <stop offset="100%" stop-color="#4f46e5"/>
-        </linearGradient>
-      </defs>
-    </svg>
-    <span class="auth-logo-text">CodeJudge</span>
+    <!-- Logo -->
+    <div class="auth-logo">
+      <svg width="36" height="36" viewBox="0 0 28 28" fill="none">
+        <rect width="28" height="28" rx="8" fill="url(#grad2)" />
+        <path d="M8 10l4 4-4 4M14 18h6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <defs>
+          <linearGradient id="grad2" x1="0" y1="0" x2="28" y2="28">
+            <stop offset="0%" stop-color="#6366f1" />
+            <stop offset="100%" stop-color="#4f46e5" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="auth-logo-text"> CodeJudge </span>
+    </div>
+
+    <h2>Welcome back</h2>
+    <p class="auth-subtitle">Sign in to continue solving problems</p>
+
+    <!-- Username -->
+    <div class="form-group">
+      <label for="username">Username</label>
+      <span class="form-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="5" r="3" stroke="#475569" stroke-width="1.5" />
+          <path d="M2 14c0-3.314 2.686-5 6-5s6 1.686 6 5" stroke="#475569" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+      </span>
+      <input type="text" id="username" placeholder="Enter your username" autocomplete="username">
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+      <label for="password">Password</label>
+      <span class="form-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <rect x="3" y="7" width="10" height="8" rx="1.5" stroke="#475569" stroke-width="1.5" />
+          <path d="M5 7V5a3 3 0 016 0v2" stroke="#475569" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+      </span>
+      <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password"
+        onkeydown="if(event.key==='Enter') loginUser()">
+    </div>
+
+    <button id="login-btn" onclick="loginUser()">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M6 2H3a1 1 0 00-1 1v10a1 1 0 001 1h3M10 11l3-3-3-3M13 8H5" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      Sign In
+    </button>
+
+    <p id="msg"></p>
+
+    <a href="signup.html">Don't have an account? <span>Create one →</span></a>
   </div>
 
-  <h2>Welcome back</h2>
-  <p class="auth-subtitle">Sign in to continue solving problems</p>
-
-  <!-- Username -->
-  <div class="form-group">
-    <label for="username">Username</label>
-    <span class="form-icon">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="3" stroke="#475569" stroke-width="1.5"/><path d="M2 14c0-3.314 2.686-5 6-5s6 1.686 6 5" stroke="#475569" stroke-width="1.5" stroke-linecap="round"/></svg>
-    </span>
-    <input type="text" id="username" placeholder="Enter your username" autocomplete="username">
-  </div>
-
-  <!-- Password -->
-  <div class="form-group">
-    <label for="password">Password</label>
-    <span class="form-icon">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="3" y="7" width="10" height="8" rx="1.5" stroke="#475569" stroke-width="1.5"/><path d="M5 7V5a3 3 0 016 0v2" stroke="#475569" stroke-width="1.5" stroke-linecap="round"/></svg>
-    </span>
-    <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password"
-           onkeydown="if(event.key==='Enter') loginUser()">
-  </div>
-
-  <button id="login-btn" onclick="loginUser()">
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 2H3a1 1 0 00-1 1v10a1 1 0 001 1h3M10 11l3-3-3-3M13 8H5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    Sign In
-  </button>
-
-  <p id="msg"></p>
-
-  <a href="signup.html">Don't have an account? <span>Create one →</span></a>
-</div>
-
-<div id="toast-container"></div>
-<script src="script.js"></script>
+  <div id="toast-container"></div>
+  <script src="script.js"></script>
 </body>
+
 </html>
