@@ -2,131 +2,154 @@ import subprocess
 import tempfile
 import os
 import time
-DANGEROUS_KEYWORDS = ["os.system", "subprocess", "shutil", "open(", "import os", "import sys"]
 
-def is_code_safe(code):
-    for keyword in DANGEROUS_KEYWORDS:
-        if keyword in code:
-            return False
-    return True
-
-def run_code(code, input_data=""):
+def run_code_docker(code, input_data=""):
     try:
-        if not is_code_safe(code):
-         return None, "Security Violation: Restricted operation", None
+        with tempfile.TemporaryDirectory() as temp_dir:
 
-        with tempfile.TemporaryDirectory() as sandbox:
-            file_path = os.path.join(sandbox, "main.py")
+            # Fix Windows path
+            temp_dir = temp_dir.replace("\\", "/")
 
-            with open(file_path, "w", encoding="utf-8") as f:
+            file_path = os.path.join(temp_dir, "main.py")
+
+            with open(file_path, "w") as f:
                 f.write(code)
 
             start_time = time.time()
 
             result = subprocess.run(
-                ["python", "main.py"],
+                [
+                    "docker", "run", "--rm",
+
+                    # 🔐 Security limits
+                    "--memory=100m",
+                    "--cpus=0.5",
+                    "--network=none",
+
+                    # 📂 Mount code
+                    "-v", f"{temp_dir}:/app",
+                    "-w", "/app",
+
+                    "python:3.11",
+                    "python", "main.py"
+                ],
                 input=input_data.encode(),
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
-                timeout=2,
-                cwd=sandbox  # 👈 isolate working directory
+                timeout=3
             )
 
-            end_time = time.time()
-            execution_time = round(end_time - start_time, 4)
+            exec_time = round(time.time() - start_time, 4)
 
-            output = result.stdout.decode().strip()
-            error = result.stderr.decode().strip()
-
-            return output, error, execution_time
+            return result.stdout.decode(), result.stderr.decode(), exec_time
 
     except subprocess.TimeoutExpired:
         return None, "TLE", None
 
-def run_cpp_code(code, input_data=""):
+def run_cpp_docker(code, input_data=""):
     try:
-        if not is_code_safe(code):
-         return None, "Security Violation: Restricted operation", None
+        with tempfile.TemporaryDirectory() as temp_dir:
 
-        with tempfile.TemporaryDirectory() as sandbox:
-            src_path = os.path.join(sandbox, "main.cpp")
-            exe_path = os.path.join(sandbox, "main")
+            temp_dir = temp_dir.replace("\\", "/")
 
-            with open(src_path, "w", encoding="utf-8") as f:
+            cpp_file = os.path.join(temp_dir, "main.cpp")
+
+            with open(cpp_file, "w") as f:
                 f.write(code)
-
-            compile_result = subprocess.run(
-                ["g++", src_path, "-o", exe_path],
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                cwd=sandbox
-            )
-
-            if compile_result.returncode != 0:
-                return None, compile_result.stderr.decode().strip(), None
 
             start_time = time.time()
 
-            run_result = subprocess.run(
-                [exe_path],
+            result = subprocess.run(
+                [
+                    "docker", "run", "--rm",
+                    "--memory=200m",
+                    "--cpus=1",
+                    "--network=none",
+                    "-v", f"{temp_dir}:/app",
+                    "-w", "/app",
+                    "gcc:latest",
+                    "bash", "-c",
+                    "g++ main.cpp -o main && ./main"
+                ],
                 input=input_data.encode(),
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
-                timeout=2,
-                cwd=sandbox
+                timeout=5
             )
 
-            end_time = time.time()
-            execution_time = round(end_time - start_time, 4)
+            exec_time = round(time.time() - start_time, 4)
 
-            output = run_result.stdout.decode().strip()
-            error = run_result.stderr.decode().strip()
-
-            return output, error, execution_time
+            return result.stdout.decode(), result.stderr.decode(), exec_time
 
     except subprocess.TimeoutExpired:
         return None, "TLE", None
 
-
-def run_java_code(code, input_data=""):
+def run_java_docker(code, input_data=""):
     try:
-        if not is_code_safe(code):
-         return None, "Security Violation: Restricted operation", None
+        with tempfile.TemporaryDirectory() as temp_dir:
+            java_file = os.path.join(temp_dir, "Main.java")
 
-        with tempfile.TemporaryDirectory() as sandbox:
-            java_file = os.path.join(sandbox, "Main.java")
-
-            with open(java_file, "w", encoding="utf-8") as f:
+            with open(java_file, "w") as f:
                 f.write(code)
-
-            compile_result = subprocess.run(
-                ["javac", "Main.java"],
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                cwd=sandbox
-            )
-
-            if compile_result.returncode != 0:
-                return None, compile_result.stderr.decode().strip(), None
 
             start_time = time.time()
 
-            run_result = subprocess.run(
-                ["java", "-cp", sandbox, "Main"],
+            result = subprocess.run(
+                [
+                    "docker", "run", "--rm",
+                    "-v", f"{temp_dir}:/app",
+                    "-w", "/app",
+                    "openjdk:17",
+                    "bash", "-c",
+                    "javac Main.java && java Main"
+                ],
                 input=input_data.encode(),
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
-                timeout=2,
-                cwd=sandbox
+                timeout=3
             )
 
-            end_time = time.time()
-            execution_time = round(end_time - start_time, 4)
+            exec_time = round(time.time() - start_time, 4)
 
-            output = run_result.stdout.decode().strip()
-            error = run_result.stderr.decode().strip()
+            return result.stdout.decode(), result.stderr.decode(), exec_time
 
-            return output, error, execution_time
+    except subprocess.TimeoutExpired:
+        return None, "TLE", None
+
+def run_cpp_docker(code, input_data=""):
+    try:
+        with tempfile.TemporaryDirectory() as temp_dir:
+
+            temp_dir = temp_dir.replace("\\", "/")
+
+            cpp_file = os.path.join(temp_dir, "main.cpp")
+
+            with open(cpp_file, "w") as f:
+                f.write(code)
+
+            start_time = time.time()
+
+            result = subprocess.run(
+                [
+                    "docker", "run", "--rm",
+                    "--memory=200m",
+                    "--cpus=1",
+                    "--network=none",
+                    "-v", f"{temp_dir}:/app",
+                    "-w", "/app",
+                    "gcc:latest",
+                    "bash", "-c",
+                    "g++ main.cpp -o main && ./main"
+                ],
+                input=input_data.encode(),
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                timeout=5
+            )
+
+            exec_time = round(time.time() - start_time, 4)
+
+            return result.stdout.decode(), result.stderr.decode(), exec_time
 
     except subprocess.TimeoutExpired:
         return None, "TLE", None
