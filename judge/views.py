@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import generics, permissions
 from .models import Problem, Submission, TestCase
 from .serializers import ProblemSerializer, SubmissionSerializer
-from .utils import run_code_docker, run_cpp_code_docker, run_java_code_docker
+from .utils import run_code_docker, run_cpp_docker, run_java_docker
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import ListAPIView
@@ -54,10 +54,10 @@ class SubmitSolutionView(generics.CreateAPIView):
                 output, error, exec_time = run_code_docker(submission.code, tc.input_data)
 
             elif submission.language == "CPP":
-                output, error, exec_time = run_cpp_code_docker(submission.code, tc.input_data)
+                output, error, exec_time = run_cpp_docker(submission.code, tc.input_data)
 
             elif submission.language == "JAVA":
-                output, error, exec_time = run_java_code_docker(submission.code, tc.input_data)
+                output, error, exec_time = run_java_docker(submission.code, tc.input_data)
 
             else:
                 submission.verdict = "RE"
@@ -117,11 +117,11 @@ class RunCodeView(APIView):
 
         # C++
         elif language == "CPP":
-            output, error, exec_time = run_cpp_code_docker(code, custom_input)
+            output, error, exec_time = run_cpp_docker(code, custom_input)
 
         # Java
         elif language == "JAVA":
-            output, error, exec_time = run_java_code_docker(code, custom_input)
+            output, error, exec_time = run_java_docker(code, custom_input)
 
         else:
             return Response({"error": "Unsupported language"})
